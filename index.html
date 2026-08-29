@@ -7,12 +7,18 @@
     <style>
         /* General Page Styling */
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; }
-        nav { background-color: #1a1a1a; padding: 15px; display: flex; align-items: center; justify-content: space-between; }
-        nav img { height: 40px; } 
+        
+        /* Navigation Bar */
+        nav { background-color: #1a1a1a; padding: 15px 30px; display: flex; align-items: center; justify-content: space-between; }
+        .logo-text { color: #00ffcc; font-size: 22px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
         nav ul li { margin-left: 20px; }
-        nav ul li a { color: #00ffcc; text-decoration: none; font-weight: bold; }
+        nav ul li a { color: #00ffcc; text-decoration: none; font-weight: bold; transition: color 0.3s; }
+        nav ul li a:hover { color: #fff; }
+        
+        /* Layout Containers */
         .container { padding: 40px; max-width: 1000px; margin: auto; }
+        .center-content { text-align: center; margin-top: 30px; }
         
         /* Slideshow Styling */
         .slideshow-container {
@@ -21,7 +27,7 @@
             margin: auto;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .mySlides { display: none; }
         .mySlides img { width: 100%; vertical-align: middle; }
@@ -63,12 +69,30 @@
 
         /* Scripts Section */
         .script-box { background: white; padding: 20px; margin-bottom: 15px; border-left: 4px solid #00ffcc; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        
+        /* Download Button */
+        .download-btn {
+            background-color: #00ffcc; 
+            color: #1a1a1a; 
+            padding: 15px 30px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            border-radius: 5px; 
+            display: inline-block;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0,255,204,0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .download-btn:hover {
+            background-color: #00e6b8;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
 
 <nav>
-    <img src="logo.png" alt="Tool Logo">
+    <div class="logo-text">Phoenix Tools</div>
     <ul>
         <li><a href="#dashboard">Dashboard</a></li>
         <li><a href="#scripts">MyScripts Showcase</a></li>
@@ -77,8 +101,8 @@
 </nav>
 
 <div id="dashboard" class="container">
-    <h2 style="color: #333;">Phoenix Ecosystem & Dashboard</h2>
-    <p>A comprehensive multi-threaded UI for managing server connections, executing DB syncs, and monitoring live hardware performance.</p>
+    <h2 style="color: #333; text-align: center;">Phoenix Ecosystem & Dashboard</h2>
+    <p style="text-align: center; margin-bottom: 30px;">A comprehensive multi-threaded UI for managing server connections, executing DB syncs, and monitoring live hardware performance.</p>
     
     <div class="slideshow-container">
 
@@ -101,13 +125,13 @@
       <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
     
-    <br><br>
-    <a href="https://github.com/gobikrish90/gobikrish90.github.io/releases/latest" 
-       style="background-color: #00ffcc; color: #1a1a1a; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block;">
-       Download Dashboard
-    </a>
+    <div class="center-content">
+        <a href="https://github.com/gobikrish90/MyScripts/raw/main/InstallationMasterToolv8.52_20260830_0203.zip" class="download-btn">
+           Download Dashboard
+        </a>
+    </div>
 </div>
-<hr>
+<hr style="border: 0; height: 1px; background: #ddd; margin: 40px 0;">
 
 <div id="scripts" class="container">
     <h2>MyScripts Repository Highlights</h2>
@@ -122,7 +146,7 @@
     <div class="script-box">
         <strong>XML Configuration Updater:</strong>
         <p>Targeted deployment scripts that handle precise application updates, ensuring specific modules, like excluding PhoenixIA from the XML updates in both Step 2 and Step 4, are safely bypassed during patching.</p>
-        <https://github.com/gobikrish90/MyScripts/raw/main/InstallationMasterToolv8.52_20260830_0203.zip>View Code</a>
+        <a href="#">View Code</a>
     </div>
 
     <div class="script-box">
