@@ -3,176 +3,444 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automation Tools & Dashboard</title>
+    <title>Phoenix Ecosystem | Engineering & Automation Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* General Page Styling */
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; }
-        
-        /* Navigation Bar */
-        nav { background-color: #1a1a1a; padding: 15px 30px; display: flex; align-items: center; justify-content: space-between; }
-        .logo-text { color: #00ffcc; font-size: 22px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
-        nav ul li { margin-left: 20px; }
-        nav ul li a { color: #00ffcc; text-decoration: none; font-weight: bold; transition: color 0.3s; }
-        nav ul li a:hover { color: #fff; }
-        
-        /* Layout Containers */
-        .container { padding: 40px; max-width: 1000px; margin: auto; }
-        .center-content { text-align: center; margin-top: 30px; }
-        
-        /* Slideshow Styling */
-        .slideshow-container {
-            max-width: 1000px;
-            position: relative;
-            margin: auto;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        :root {
+            --bg-deep: #0a0c10;
+            --bg-surface: #11141c;
+            --bg-glass: rgba(22, 27, 38, 0.7);
+            --border-glass: rgba(0, 255, 204, 0.15);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --accent-cyan: #00ffcc;
+            --accent-glow: rgba(0, 255, 204, 0.35);
+            --accent-purple: #8b5cf6;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
         }
-        .mySlides { display: none; }
-        .mySlides img { width: 100%; vertical-align: middle; }
-        
-        /* Next & previous buttons */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 255, 204, 0.07) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.07) 0%, transparent 40%);
+        }
+
+        /* Ambient subtle grid */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 12, 16, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-badge {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #000;
+            font-size: 14px;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .brand-text {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-cyan);
+            background: rgba(0, 255, 204, 0.08);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            padding: 6px 14px;
+            border-radius: 100px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background-color: var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-cyan);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Hero Header */
+        .hero {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-cyan);
+            background: rgba(0, 255, 204, 0.05);
+            border: 1px solid var(--border-glass);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent-cyan) 20%, #ffffff 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* Metrics Bar */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .metric-card {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-subtle);
+            backdrop-filter: blur(12px);
+            padding: 18px 20px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .metric-card:hover {
+            border-color: var(--border-glass);
+        }
+
+        .metric-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .metric-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Showcase Carousel */
+        .showcase-wrapper {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .slideshow-container {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Slide controls */
         .prev, .next {
             cursor: pointer;
             position: absolute;
             top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: white;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
             font-weight: bold;
-            font-size: 24px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
+            font-size: 18px;
+            border-radius: 10px;
+            background: rgba(10, 12, 16, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-subtle);
             user-select: none;
-            background-color: rgba(0,0,0,0.5);
+            transition: all 0.2s ease;
         }
-        .next { right: 0; border-radius: 3px 0 0 3px; }
-        .prev:hover, .next:hover { background-color: rgba(0,0,0,0.9); }
-        
-        /* Caption text */
-        .text {
-            color: #f2f2f2;
-            font-size: 15px;
-            padding: 12px 15px;
-            position: absolute;
-            bottom: 8px;
-            width: 100%;
-            text-align: center;
-            background-color: rgba(0,0,0,0.7);
-        }
-        
-        /* Fading animation */
-        .fade { animation-name: fade; animation-duration: 1.5s; }
-        @keyframes fade { from {opacity: .4} to {opacity: 1} }
 
-        /* Scripts Section */
-        .script-box { background: white; padding: 20px; margin-bottom: 15px; border-left: 4px solid #00ffcc; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        
-        /* Download Button */
-        .download-btn {
-            background-color: #00ffcc; 
-            color: #1a1a1a; 
-            padding: 15px 30px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            border-radius: 5px; 
-            display: inline-block;
-            font-size: 16px;
-            box-shadow: 0 4px 6px rgba(0,255,204,0.3);
-            transition: transform 0.2s, background-color 0.2s;
+        .prev { left: 16px; }
+        .next { right: 16px; }
+
+        .prev:hover, .next:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
+
+        .slide-caption {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-primary);
+            padding: 12px 20px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(10, 12, 16, 0.95), rgba(10, 12, 16, 0));
+            text-align: center;
+        }
+
+        .fade {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0.6; transform: scale(0.995); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Call To Action */
+        .cta-box {
+            text-align: center;
+            background: linear-gradient(180deg, rgba(17, 20, 28, 0.6) 0%, rgba(10, 12, 16, 0.9) 100%);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 36px 24px;
+            backdrop-filter: blur(12px);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, #00e6b8 100%);
+            color: #041014;
+            padding: 16px 36px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 10px;
+            letter-spacing: 0.2px;
+            box-shadow: 0 0 25px var(--accent-glow);
+            transition: all 0.25s ease;
+        }
+
         .download-btn:hover {
-            background-color: #00e6b8;
             transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(0, 255, 204, 0.55);
+        }
+
+        .download-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 14px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 13px;
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo-text">Phoenix Tools</div>
-    <ul>
-        <li><a href="#dashboard">Dashboard</a></li>
-        <li><a href="#scripts">MyScripts Showcase</a></li>
-        <li><a href="https://github.com/gobikrish90/MyScripts" target="_blank">GitHub Repo</a></li>
-    </ul>
+    <a href="#" class="brand">
+        <div class="brand-badge">P</div>
+        <div class="brand-text">Phoenix Suite</div>
+    </a>
+    <div class="nav-status">
+        <div class="status-dot"></div>
+        <span>ENGINE ARMED</span>
+    </div>
 </nav>
 
-<div id="dashboard" class="container">
-    <h2 style="color: #333; text-align: center;">Phoenix Ecosystem & Dashboard</h2>
-    <p style="text-align: center; margin-bottom: 30px;">A comprehensive multi-threaded UI for managing server connections, executing DB syncs, and monitoring live hardware performance.</p>
-    
-    <div class="slideshow-container">
+<main class="container">
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-pill">Enterprise Automation Framework</div>
+        <h1>Next-Gen Infrastructure <span>Orchestrator</span></h1>
+        <p>A multi-threaded management ecosystem delivering continuous telemetry, automated schema synchronizations, and zero-touch deployment pipelines.</p>
+    </header>
 
-      <div class="mySlides fade">
-        <img src="monitor.jpg" alt="Phoenix Monitor">
-        <div class="text">Phoenix Monitor: Live Hardware & Resource Analytics</div>
-      </div>
-
-      <div class="mySlides fade">
-        <img src="dashboard.png" alt="Installation Dashboard">
-        <div class="text">Main Dashboard: Centralized Script Execution</div>
-      </div>
-
-      <div class="mySlides fade">
-        <img src="sync-main.png" alt="DB Sync Dashboard">
-        <div class="text">DB Sync Dashboard: Multi-Database Synchronization Utility</div>
-      </div>
-
-      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <!-- Key Metrics Cards -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <span class="metric-label">Execution Engine</span>
+            <span class="metric-value">Multi-Threaded UI</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-label">Architecture</span>
+            <span class="metric-value">Glass UI & WinRM</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-label">Target System</span>
+            <span class="metric-value">Enterprise SQL & App</span>
+        </div>
     </div>
-    
-    <div class="center-content">
+
+    <!-- Showcase Slideshow -->
+    <section class="showcase-wrapper">
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="monitor.jpg" alt="Phoenix Monitor Telemetry">
+                <div class="slide-caption">Phoenix Monitor: Real-Time Hardware & Resource Telemetry</div>
+            </div>
+
+            <div class="mySlides fade">
+                <img src="dashboard.png" alt="Phoenix Master Dashboard">
+                <div class="slide-caption">Master Installation Dashboard: Centralized Pipeline Controller</div>
+            </div>
+
+            <div class="mySlides fade">
+                <img src="sync-main.png" alt="DB Sync Utility">
+                <div class="slide-caption">DB Sync Dashboard: Multi-Database Synchronizer</div>
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="cta-box">
         <a href="https://github.com/gobikrish90/MyScripts/raw/main/InstallationMasterToolv8.52_20260830_0203.zip" class="download-btn">
-           Download Dashboard
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download Installation Master Tool
         </a>
-    </div>
-</div>
-<hr style="border: 0; height: 1px; background: #ddd; margin: 40px 0;">
+        <p class="download-meta">Deployment Artifact &bull; Build v8.52 &bull; Enterprise Ready</p>
+    </section>
+</main>
 
-<div id="scripts" class="container">
-    <h2>GitHub Repository Showcase</h2>
-    <p>Browse the core automation scripts, configurations, and tools powering backend tasks.</p>
-    
-    <div class="script-box">
-        <strong>SQL Database Sync Tool:</strong>
-        <p>Automated routines for synchronizing data across environments, managing batch updates, and configuring setups for both Police and IA databases.</p>
-        <a href="https://github.com/gobikrish90/MyScripts" target="_blank" style="color: #0088cc; font-weight: bold; text-decoration: none;">View on GitHub &rarr;</a>
-    </div>
-
-    <div class="script-box">
-        <strong>XML Configuration Updater:</strong>
-        <p>Targeted deployment scripts that handle precise application updates, ensuring specific modules, like excluding PhoenixIA from the XML updates in both Step 2 and Step 4, are safely bypassed during patching.</p>
-        <a href="https://github.com/gobikrish90/MyScripts" target="_blank" style="color: #0088cc; font-weight: bold; text-decoration: none;">View on GitHub &rarr;</a>
-    </div>
-
-    <div class="script-box">
-        <strong>Remote Server Maintenance:</strong>
-        <p>PowerShell utilities for clearing temporary files, updating server instances, and managing IIS bindings with minimal downtime.</p>
-        <a href="https://github.com/gobikrish90/MyScripts" target="_blank" style="color: #0088cc; font-weight: bold; text-decoration: none;">View on GitHub &rarr;</a>
-    </div>
-</div>
+<footer>
+    &copy; 2026 Phoenix Ecosystem. All rights reserved.
+</footer>
 
 <script>
     let slideIndex = 1;
     showSlides(slideIndex);
 
     function plusSlides(n) {
-      showSlides(slideIndex += n);
+        showSlides(slideIndex += n);
     }
 
     function showSlides(n) {
-      let i;
-      let slides = document.getElementsByClassName("mySlides");
-      if (n > slides.length) {slideIndex = 1}    
-      if (n < 1) {slideIndex = slides.length}
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
-      }
-      slides[slideIndex-1].style.display = "block";  
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        if (n > slides.length) { slideIndex = 1; }    
+        if (n < 1) { slideIndex = slides.length; }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slides[slideIndex-1].style.display = "block";  
     }
 </script>
 
