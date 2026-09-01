@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gobinath Ramakrishnan | Cloud & Infrastructure Architect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            azure: '#0078D4', /* Microsoft Azure brand color */
+            azureDark: '#005A9E',
+            serverBg: '#0b1120',
+            panelBg: '#1e293b'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-serverBg text-slate-300 font-sans antialiased selection:bg-azure selection:text-white">
+
+  <!-- Header & Navigation -->
+  <header class="fixed top-0 w-full bg-serverBg/90 backdrop-blur border-b border-slate-800 z-50">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="text-2xl font-bold tracking-tight text-white">
+        <i class="fa-solid fa-cloud text-azure mr-2"></i>Gobinath Ramakrishnan <span class="text-sm font-normal text-slate-400 hidden sm:inline-block">[cite: 1]</span>
+      </div>
+      <nav class="hidden md:flex gap-6 text-sm font-semibold text-slate-400">
+        <a href="#about" class="hover:text-white transition">Profile</a>
+        <a href="#skills" class="hover:text-white transition">Skills</a>
+        <a href="#experience" class="hover:text-white transition">Experience</a>
+        <a href="#resume" class="hover:text-white transition">Download Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 pt-32 pb-24 space-y-24">
+
+    <!-- Hero / Profile Section -->
+    <section id="about" class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+      <div class="lg:col-span-2 space-y-6">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-azure/10 border border-azure/30 rounded-full text-azure font-medium text-sm">
+          <i class="fa-solid fa-server"></i> System/Platform Engineer | 12+ Years Experience[cite: 1]
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-white leading-tight">
+          Azure Administrator & <br /> <span class="text-azure">Architect[cite: 1]</span>
+        </h1>
+        <p class="text-lg text-slate-400 leading-relaxed">
+          System/Platform Engineer with 12+ years of experience in IT Infrastructure, including server installation, cloud platforms, application hosting, Active Directory, and comprehensive technical support[cite: 1]. Skilled in project implementation, system upgrades, and supporting enterprise IT environments with hands-on experience in Microsoft Azure and VMware platforms[cite: 1].
+        </p>
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a href="mailto:gobiramakrishnan@yahoo.com" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition">
+            <i class="fa-solid fa-envelope mr-2"></i> gobiramakrishnan@yahoo.com[cite: 1]
+          </a>
+          <a href="https://www.linkedin.com/in/gobinath-ramakrishnan-391127169/" target="_blank" class="px-5 py-2.5 bg-[#0077b5]/10 hover:bg-[#0077b5]/20 text-[#0077b5] border border-[#0077b5]/50 rounded-lg transition">
+            <i class="fa-brands fa-linkedin mr-2"></i> LinkedIn[cite: 1]
+          </a>
+          <span class="px-5 py-2.5 bg-slate-800 text-slate-300 rounded-lg">
+            <i class="fa-solid fa-phone mr-2"></i> +91 9791226462[cite: 1]
+          </span>
+        </div>
+      </div>
+
+      <!-- Quick Resume Download & QR Code Section -->
+      <div id="resume" class="bg-panelBg border border-slate-700 rounded-2xl p-8 flex flex-col items-center text-center shadow-2xl shadow-azure/10">
+        <h3 class="text-xl font-bold text-white mb-2">Get My Resume</h3>
+        <p class="text-sm text-slate-400 mb-6">Scan the QR code or download the file directly.</p>
+        
+        <!-- QR CODE PLACEHOLDER -->
+        <div class="w-40 h-40 bg-white p-2 rounded-xl border-4 border-slate-800 mb-6 flex items-center justify-center">
+          <!-- Replace this SVG/img with your actual QR code image pointing to your hosted PDF -->
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://YOUR_GITHUB_PAGES_URL/gobi updated resume-2.pdf" alt="QR Code" class="w-full h-full object-contain" />
+        </div>
+
+        <a href="gobi updated resume-2.pdf" download class="w-full py-3 bg-azure hover:bg-azureDark text-white font-bold rounded-lg transition shadow-lg shadow-azure/20 flex items-center justify-center gap-2">
+          <i class="fa-solid fa-file-pdf"></i> Download "gobi updated resume-2.pdf"[cite: 1]
+        </a>
+      </div>
+    </section>
+
+    <!-- Technical Skills Directory -->
+    <section id="skills" class="space-y-8 relative">
+      <div class="border-b border-slate-800 pb-4">
+        <h2 class="text-3xl font-bold text-white"><i class="fa-solid fa-microchip text-azure mr-3"></i>Technical Architecture & Skills</h2>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Cloud & OS -->
+        <div class="bg-panelBg p-6 rounded-xl border border-slate-700 hover:border-azure/50 transition">
+          <h3 class="text-lg font-semibold text-white mb-4 border-b border-slate-600 pb-2">Cloud & Virtualization</h3>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li><span class="text-azure font-medium">Cloud Platforms:</span> Microsoft Azure (Resource Groups, VMs, Azure AD, NSG, VPN, VNet Peering), Azure Monitor, Azure Backup[cite: 1]</li>
+            <li><span class="text-azure font-medium">Virtualization:</span> VMware ESXi 6.5/7.0, Hyper-V[cite: 1]</li>
+            <li><span class="text-azure font-medium">Operating Systems:</span> Windows Server 2012/2016/2019, Linux (Ubuntu/CentOS)[cite: 1]</li>
+          </ul>
+        </div>
+
+        <!-- Infrastructure & Network -->
+        <div class="bg-panelBg p-6 rounded-xl border border-slate-700 hover:border-azure/50 transition">
+          <h3 class="text-lg font-semibold text-white mb-4 border-b border-slate-600 pb-2">Infrastructure & Networking</h3>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li><span class="text-azure font-medium">Active Directory:</span> Group Policies, OU Management, NTFS Permissions[cite: 1]</li>
+            <li><span class="text-azure font-medium">Networking:</span> LAN/WAN, DHCP, DNS, IP Routing, IP Phone (VoIP) Configuration[cite: 1]</li>
+            <li><span class="text-azure font-medium">Application Hosting:</span> IIS Configuration, SSL Certificate Management[cite: 1]</li>
+          </ul>
+        </div>
+
+        <!-- Automation & Management -->
+        <div class="bg-panelBg p-6 rounded-xl border border-slate-700 hover:border-azure/50 transition">
+          <h3 class="text-lg font-semibold text-white mb-4 border-b border-slate-600 pb-2">Tools, Scripting & DB</h3>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li><span class="text-azure font-medium">Database:</span> MS SQL Server - Installation, Backup/Restore, Query Execution[cite: 1]</li>
+            <li><span class="text-azure font-medium">Scripting & CI/CD:</span> PowerShell, Azure CLI, Git[cite: 1]</li>
+            <li><span class="text-azure font-medium">Monitoring & Process:</span> SolarWinds, Microsoft System Center, SCCM, ITIL (Incident, Change & Problem Management)[cite: 1]</li>
+            <li><span class="text-azure font-medium">Security & Tools:</span> ServiceNow, Jira, Office 365 Admin, K7 Endpoint Security, Patch Management[cite: 1]</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Experience Timeline -->
+    <section id="experience" class="space-y-8">
+      <div class="border-b border-slate-800 pb-4">
+        <h2 class="text-3xl font-bold text-white"><i class="fa-solid fa-briefcase text-azure mr-3"></i>Professional Experience</h2>
+      </div>
+
+      <div class="space-y-8 border-l-2 border-slate-700 ml-3 pl-8">
+        
+        <!-- Role 1 -->
+        <div class="relative">
+          <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-azure border-4 border-serverBg"></div>
+          <h3 class="text-xl font-bold text-white">Installation Engineer[cite: 1]</h3>
+          <p class="text-azure font-medium text-sm mb-3">Chenosa Technology Solutions Pvt Ltd | June 2024 - Present[cite: 1]</p>
+          <ul class="list-disc list-outside ml-4 space-y-1.5 text-slate-400 text-sm">
+            <li>Built and verified software packages for deployment[cite: 1]</li>
+            <li>Managed Azure-based cloud platforms and resources[cite: 1]</li>
+            <li>Performed SQL backups and synchronization fixes[cite: 1]</li>
+            <li>Applied manual hotfixes and supported application deployment via IIS[cite: 1]</li>
+            <li>Created documentation for technical deployments and support guides[cite: 1]</li>
+          </ul>
+        </div>
+
+        <!-- Role 2 -->
+        <div class="relative">
+          <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-slate-600 border-4 border-serverBg"></div>
+          <h3 class="text-xl font-bold text-white">Senior Support Administrator[cite: 1]</h3>
+          <p class="text-azure font-medium text-sm mb-3">Sungwoo Stamping Pvt Ltd | Dec 2017 - May 2024[cite: 1]</p>
+          <ul class="list-disc list-outside ml-4 space-y-1.5 text-slate-400 text-sm">
+            <li>Administered AD, DNS, DHCP, and file/print servers for enterprise infrastructure[cite: 1]</li>
+            <li>Supported 130+ desktops and 25 printers[cite: 1]</li>
+            <li>Managed patching, antivirus deployment, and Microsoft 365 Outlook configurations[cite: 1]</li>
+            <li>Configured routers, switches, and managed enterprise Wi-Fi[cite: 1]</li>
+            <li>Deployed IP phones and managed VoIP infrastructure[cite: 1]</li>
+            <li>Handled IT asset procurement, inventory, and vendor coordination[cite: 1]</li>
+          </ul>
+        </div>
+
+        <!-- Role 3 -->
+        <div class="relative">
+          <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-slate-600 border-4 border-serverBg"></div>
+          <h3 class="text-xl font-bold text-white">System Administrator (Client: Alagendran Automobiles)[cite: 1]</h3>
+          <p class="text-azure font-medium text-sm mb-3">SSS Solutions Pvt Ltd | Nov 2013 - Nov 2017[cite: 1]</p>
+          <ul class="list-disc list-outside ml-4 space-y-1.5 text-slate-400 text-sm">
+            <li>Provided remote desktop support for over 150 systems[cite: 1]</li>
+            <li>Led reporting and SLA compliance for the IT support team[cite: 1]</li>
+            <li>Managed AD user setup, system patching, and software rollout[cite: 1]</li>
+            <li>Troubleshot networking and Outlook issues[cite: 1]</li>
+          </ul>
+        </div>
+
+        <!-- Role 4 -->
+        <div class="relative">
+          <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-slate-600 border-4 border-serverBg"></div>
+          <h3 class="text-xl font-bold text-white">Desktop Support Engineer[cite: 1]</h3>
+          <p class="text-azure font-medium text-sm mb-3">Vega Tech Solutions Pvt Ltd | Jul 2011 - Oct 2013[cite: 1]</p>
+          <ul class="list-disc list-outside ml-4 space-y-1.5 text-slate-400 text-sm">
+            <li>Installed and configured Windows OS and application software[cite: 1]</li>
+            <li>Created and managed AD users, printers, and shared drives[cite: 1]</li>
+            <li>Provided level 1 support for network and Outlook issues[cite: 1]</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Education & Certifications -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <div class="bg-panelBg p-8 rounded-2xl border border-slate-700">
+        <h2 class="text-2xl font-bold text-white mb-6"><i class="fa-solid fa-certificate text-azure mr-3"></i>Certifications</h2>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <i class="fa-brands fa-microsoft text-xl text-azure mt-0.5"></i>
+            <div>
+              <p class="text-white font-semibold">Microsoft Certified: Azure Solutions Architect Expert (AZ-305)[cite: 1]</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-brands fa-microsoft text-xl text-azure mt-0.5"></i>
+            <div>
+              <p class="text-white font-semibold">Microsoft Certified: Azure Administrator Associate (AZ-104)[cite: 1]</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-panelBg p-8 rounded-2xl border border-slate-700">
+        <h2 class="text-2xl font-bold text-white mb-6"><i class="fa-solid fa-graduation-cap text-azure mr-3"></i>Education & Details</h2>
+        <div class="space-y-4 text-sm text-slate-300">
+          <p><span class="font-bold text-white">Degree:</span> Bachelor of Computer Applications (BCA), Tamil Nadu Open University, Chennai - 2020[cite: 1]</p>
+          <p><span class="font-bold text-white">Languages:</span> English, Tamil[cite: 1]</p>
+          <p><span class="font-bold text-white">Base:</span> Chennai, Tamil Nadu (Permanent: Madurai - 625001)[cite: 1]</p>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="bg-panelBg border-t border-slate-800 py-10 mt-12 text-center text-sm text-slate-500">
+    <p>Gobinath Ramakrishnan | Cloud Infrastructure Portfolio[cite: 1]</p>
+  </footer>
+
+</body>
+</html>
