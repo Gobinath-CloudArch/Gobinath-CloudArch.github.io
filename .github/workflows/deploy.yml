@@ -2,25 +2,20 @@ name: Deploy Portfolio to Pages
 
 on:
   push:
-    branches: ["main"] # Change to 'master' if that is your default branch
+    branches: ["main"]
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# ---------------------------------------------------------
-# THIS IS THE FIX: Manage concurrent deployments
-# It groups pages deployments and cancels any stuck runs
-# ---------------------------------------------------------
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build-and-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
