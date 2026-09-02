@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gobinath Ramakrishnan | High-Velocity Cloud Architecture</title>
+    <title>Gobinath Ramakrishnan | Enterprise Cloud Architecture</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,9 +23,10 @@
                         mono: ['Fira Code', 'monospace'],
                     },
                     colors: {
-                        trackDark: '#0a0a0f',
-                        trackRed: '#ff003c',
-                        neonCyan: '#00ffcc',
+                        cloudDark: '#040B16',
+                        cloudBlue: '#0078D4',
+                        neonCyan: '#00F0FF',
+                        dataStream: '#0EA5E9',
                     }
                 }
             }
@@ -36,37 +37,33 @@
         body, html {
             margin: 0;
             padding: 0;
-            background-color: #0a0a0f;
+            background-color: #040B16;
             color: #e2e8f0;
             overflow-x: hidden;
         }
 
-        /* --- Fullscreen Video Background --- */
-        .video-container {
+        /* --- Fullscreen Image Background --- */
+        .image-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             z-index: -2;
-            overflow: hidden;
-            background-color: #0a0a0f; /* Fallback color */
+            background-image: url('OIP.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: slowZoom 20s infinite alternate ease-in-out;
         }
 
-        .video-background {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translateX(-50%) translateY(-50%);
-            object-fit: cover;
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
         }
 
         /* Dark Cinematic Overlay to make text readable */
-        .video-overlay {
+        .image-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -75,20 +72,20 @@
             z-index: -1;
             background: linear-gradient(
                 to bottom, 
-                rgba(10, 10, 15, 0.7) 0%, 
-                rgba(10, 10, 15, 0.85) 50%, 
-                rgba(10, 10, 15, 0.95) 100%
+                rgba(4, 11, 22, 0.8) 0%, 
+                rgba(4, 11, 22, 0.6) 40%, 
+                rgba(4, 11, 22, 0.95) 100%
             );
         }
 
         /* --- UI Elements --- */
         .glass-panel {
-            background: rgba(15, 20, 30, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-top: 1px solid rgba(255, 0, 60, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: rgba(10, 17, 30, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-top: 1px solid rgba(0, 240, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 240, 255, 0.05);
         }
 
         /* Animations */
@@ -120,7 +117,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
             transform: rotate(45deg) translateY(-100%);
             animation: shine 3s infinite;
         }
@@ -131,23 +128,16 @@
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0a0a0f; }
-        ::-webkit-scrollbar-thumb { background: #ff003c; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #ff4d79; }
+        ::-webkit-scrollbar-track { background: #040B16; }
+        ::-webkit-scrollbar-thumb { background: #00F0FF; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
     </style>
 </head>
 <body>
 
-    <!-- Cinematic Video Background (Bulletproof Setup) -->
-    <div class="video-container">
-        <video id="bg-video" autoplay loop muted playsinline class="video-background">
-            <!-- Tries both uppercase and lowercase extensions to bypass GitHub Pages strict case rules -->
-            <source src="Homepage.MP4" type="video/mp4">
-            <source src="Homepage.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
-    </div>
-    <div class="video-overlay"></div>
+    <!-- Cinematic Image Background -->
+    <div class="image-container"></div>
+    <div class="image-overlay"></div>
 
     <!-- Main Content Container -->
     <main class="relative z-10 min-h-screen flex flex-col items-center pt-20 pb-24 px-6">
@@ -155,12 +145,12 @@
         <!-- Header / Status Indicator -->
         <div class="w-full max-w-5xl flex justify-between items-center mb-16 fade-up">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-trackRed/20 border border-trackRed/50 rounded-lg flex items-center justify-center">
-                    <i class="fa-solid fa-gauge-high text-trackRed"></i>
+                <div class="w-10 h-10 bg-neonCyan/10 border border-neonCyan/40 rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-cloud text-neonCyan"></i>
                 </div>
                 <div>
                     <h1 class="font-mono font-bold text-white tracking-widest uppercase text-sm">Gobi_Master_Node</h1>
-                    <p class="font-mono text-xs text-trackRed animate-pulse">Engine Armed & Ready</p>
+                    <p class="font-mono text-xs text-neonCyan animate-pulse">Infrastructure Online</p>
                 </div>
             </div>
         </div>
@@ -168,17 +158,17 @@
         <!-- Hero Section -->
         <div class="w-full max-w-5xl text-center space-y-8 fade-up delay-1">
             <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight uppercase italic" style="transform: skewX(-5deg);">
-                High-Velocity <br />
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-trackRed to-orange-500">Cloud Architecture</span>
+                Enterprise-Grade <br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan to-dataStream">Cloud Architecture</span>
             </h1>
-            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto font-mono">
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-mono">
                 Driving 12+ years of precision engineering, zero-touch deployment pipelines, and maximum-performance enterprise infrastructure.
             </p>
 
             <!-- Primary Portfolio Button -->
             <div class="pt-8 pb-12 flex justify-center">
-                <a href="https://gobinath-cloudarch.github.io/portfolio" class="portfolio-btn bg-trackRed hover:bg-red-600 text-white font-bold py-4 px-10 rounded-full text-lg shadow-[0_0_30px_rgba(255,0,60,0.5)] border border-red-400 flex items-center gap-3">
-                    <i class="fa-solid fa-flag-checkered"></i> For Portfolio Click Here
+                <a href="https://gobinath-cloudarch.github.io/portfolio" class="portfolio-btn bg-gradient-to-r from-dataStream to-neonCyan hover:from-sky-500 hover:to-cyan-400 text-slate-950 font-extrabold py-4 px-10 rounded-full text-lg shadow-[0_0_30px_rgba(0,240,255,0.4)] border border-cyan-200 flex items-center gap-3">
+                    <i class="fa-solid fa-bolt text-slate-900"></i> For Portfolio Click Here
                 </a>
             </div>
         </div>
@@ -198,7 +188,7 @@
                 <div class="glass-panel p-6 md:p-8 rounded-xl relative overflow-hidden group">
                     <div class="absolute left-0 top-0 w-1 h-full bg-neonCyan group-hover:w-2 transition-all"></div>
                     <div class="flex items-start gap-4">
-                        <div class="mt-1 bg-slate-900 border border-slate-700 p-2 rounded text-neonCyan">
+                        <div class="mt-1 bg-slate-900/80 border border-slate-700 p-2 rounded text-neonCyan">
                             <i class="fa-solid fa-code-merge"></i>
                         </div>
                         <div>
@@ -206,9 +196,9 @@
                             <p class="text-sm text-slate-300 mb-4 leading-relaxed">
                                 Directed mission-critical changes to highly sensitive deployment logic for enterprise release pipelines. Engineered strict XML deployment schemas with dynamic conditional validation.
                             </p>
-                            <div class="bg-black/50 p-4 rounded border border-slate-800 font-mono text-xs text-slate-400">
-                                <span class="text-trackRed">></span> <span class="text-white">Execution Parameters:</span> Architected specific override paths to selectively update application configurations without breaking dependencies.<br><br>
-                                <span class="text-neonCyan">></span> <span class="text-white">System Output:</span> Successfully isolated and explicitly excluded <strong>PhoenixIA</strong> from XML updates during both <strong>Step 2</strong> and <strong>Step 4</strong> deployment phases, ensuring absolute stability for independent modules while parallel systems were patched.
+                            <div class="bg-black/40 p-4 rounded border border-slate-700/50 font-mono text-xs text-slate-400">
+                                <span class="text-neonCyan">></span> <span class="text-white">Execution Parameters:</span> Architected specific override paths to selectively update application configurations without breaking dependencies.<br><br>
+                                <span class="text-dataStream">></span> <span class="text-white">System Output:</span> Successfully isolated and explicitly excluded <strong>PhoenixIA</strong> from XML updates during both <strong>Step 2</strong> and <strong>Step 4</strong> deployment phases, ensuring absolute stability for independent modules while parallel systems were patched.
                             </div>
                         </div>
                     </div>
@@ -216,9 +206,9 @@
 
                 <!-- Entry 2 -->
                 <div class="glass-panel p-6 md:p-8 rounded-xl relative overflow-hidden group fade-up delay-3">
-                    <div class="absolute left-0 top-0 w-1 h-full bg-trackRed group-hover:w-2 transition-all"></div>
+                    <div class="absolute left-0 top-0 w-1 h-full bg-dataStream group-hover:w-2 transition-all"></div>
                     <div class="flex items-start gap-4">
-                        <div class="mt-1 bg-slate-900 border border-slate-700 p-2 rounded text-trackRed">
+                        <div class="mt-1 bg-slate-900/80 border border-slate-700 p-2 rounded text-dataStream">
                             <i class="fa-solid fa-server"></i>
                         </div>
                         <div>
@@ -226,8 +216,8 @@
                             <p class="text-sm text-slate-300 mb-4 leading-relaxed">
                                 Developed and refined automated PowerShell scripts to manage fleet-wide server operations, WinRM connections, and maintenance routines for distributed US-based customer environments.
                             </p>
-                            <div class="bg-black/50 p-4 rounded border border-slate-800 font-mono text-xs text-slate-400">
-                                <span class="text-trackRed">></span> <span class="text-white">Execution Parameters:</span> Engineered comprehensive deployment scripts pushing zero-touch updates across active server instances and handling complex IIS binding management.<br><br>
+                            <div class="bg-black/40 p-4 rounded border border-slate-700/50 font-mono text-xs text-slate-400">
+                                <span class="text-dataStream">></span> <span class="text-white">Execution Parameters:</span> Engineered comprehensive deployment scripts pushing zero-touch updates across active server instances and handling complex IIS binding management.<br><br>
                                 <span class="text-neonCyan">></span> <span class="text-white">System Output:</span> Implemented strict automation protocols for dynamically clearing temporary payload files post-deployment, immediately mitigating storage bloat and auditing network shares to maintain compliance.
                             </div>
                         </div>
@@ -236,9 +226,9 @@
 
                 <!-- Entry 3 -->
                 <div class="glass-panel p-6 md:p-8 rounded-xl relative overflow-hidden group fade-up delay-4">
-                    <div class="absolute left-0 top-0 w-1 h-full bg-orange-500 group-hover:w-2 transition-all"></div>
+                    <div class="absolute left-0 top-0 w-1 h-full bg-indigo-500 group-hover:w-2 transition-all"></div>
                     <div class="flex items-start gap-4">
-                        <div class="mt-1 bg-slate-900 border border-slate-700 p-2 rounded text-orange-500">
+                        <div class="mt-1 bg-slate-900/80 border border-slate-700 p-2 rounded text-indigo-400">
                             <i class="fa-solid fa-database"></i>
                         </div>
                         <div>
@@ -246,8 +236,8 @@
                             <p class="text-sm text-slate-300 mb-4 leading-relaxed">
                                 Modernized SQL database maintenance through highly reliable multi-database synchronization mechanisms for critical law enforcement data structures.
                             </p>
-                            <div class="bg-black/50 p-4 rounded border border-slate-800 font-mono text-xs text-slate-400">
-                                <span class="text-trackRed">></span> <span class="text-white">Execution Parameters:</span> Designed robust automation pipelines bridging complex, independent schemas between distinct Police and Internal Affairs (IA) database architectures.<br><br>
+                            <div class="bg-black/40 p-4 rounded border border-slate-700/50 font-mono text-xs text-slate-400">
+                                <span class="text-indigo-400">></span> <span class="text-white">Execution Parameters:</span> Designed robust automation pipelines bridging complex, independent schemas between distinct Police and Internal Affairs (IA) database architectures.<br><br>
                                 <span class="text-neonCyan">></span> <span class="text-white">System Output:</span> Minimized manual intervention during data ingestion and differential backups, guaranteeing absolute data integrity and synchronization across the public safety infrastructure.
                             </div>
                         </div>
@@ -261,29 +251,8 @@
 
     <!-- Footer -->
     <footer class="relative z-10 border-t border-slate-800/50 bg-black/60 backdrop-blur-md py-6 text-center text-xs text-slate-500 font-mono">
-        <p>SYSTEM ENGINEERED BY GOBINATH RAMAKRISHNAN &bull; VER 2.0</p>
+        <p>SYSTEM ENGINEERED BY GOBINATH RAMAKRISHNAN &bull; CLOUD ARCHITECTURE</p>
     </footer>
 
-    <!-- Force Play Script to Bypass Browser Policies -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var video = document.getElementById("bg-video");
-            if (video) {
-                // Ensure muted state (browsers block unmuted autoplay)
-                video.muted = true;
-                
-                // Aggressively attempt to play
-                var playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(_ => {
-                        // Video playing successfully
-                    }).catch(error => {
-                        console.log("Autoplay was prevented by the browser. Interaction required.", error);
-                    });
-                }
-            }
-        });
-    </script>
 </body>
 </html>
