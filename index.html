@@ -42,8 +42,19 @@
         }
 
         /* --- Fullscreen Video Background --- */
-        .video-background {
+        .video-container {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+            background-color: #0a0a0f; /* Fallback color */
+        }
+
+        .video-background {
+            position: absolute;
             top: 50%;
             left: 50%;
             min-width: 100%;
@@ -51,7 +62,6 @@
             width: auto;
             height: auto;
             transform: translateX(-50%) translateY(-50%);
-            z-index: -2;
             object-fit: cover;
         }
 
@@ -128,12 +138,15 @@
 </head>
 <body>
 
-    <!-- Cinematic Video Background -->
-    <!-- The "muted" attribute is REQUIRED for autoplay to work in modern browsers -->
-    <video autoplay loop muted playsinline class="video-background">
-        <source src="Homepage.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
-    </video>
+    <!-- Cinematic Video Background (Bulletproof Setup) -->
+    <div class="video-container">
+        <video id="bg-video" autoplay loop muted playsinline class="video-background">
+            <!-- Tries both uppercase and lowercase extensions to bypass GitHub Pages strict case rules -->
+            <source src="Homepage.MP4" type="video/mp4">
+            <source src="Homepage.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
     <div class="video-overlay"></div>
 
     <!-- Main Content Container -->
@@ -251,5 +264,26 @@
         <p>SYSTEM ENGINEERED BY GOBINATH RAMAKRISHNAN &bull; VER 2.0</p>
     </footer>
 
+    <!-- Force Play Script to Bypass Browser Policies -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var video = document.getElementById("bg-video");
+            if (video) {
+                // Ensure muted state (browsers block unmuted autoplay)
+                video.muted = true;
+                
+                // Aggressively attempt to play
+                var playPromise = video.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // Video playing successfully
+                    }).catch(error => {
+                        console.log("Autoplay was prevented by the browser. Interaction required.", error);
+                    });
+                }
+            }
+        });
+    </script>
 </body>
 </html>
