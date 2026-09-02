@@ -1,389 +1,247 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gobinath Ramakrishnan | Enterprise Cloud Architect</title>
-    <meta name="description" content="System/Platform Engineer with 12+ years of experience in IT Infrastructure, automation, and enterprise cloud architecture.">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        cloudBg: '#090E17',
-                        cloudPanel: '#111827',
-                        cloudBorder: '#1F2937',
-                        accentBlue: '#38BDF8',
-                        accentCyan: '#00F0FF',
-                    },
-                    backgroundImage: {
-                        'grid-pattern': "linear-gradient(to right, #1F2937 1px, transparent 1px), linear-gradient(to bottom, #1F2937 1px, transparent 1px)",
-                    }
-                }
-            }
-        }
-    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
     <style>
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #090E17; }
-        ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #38BDF8; }
-        
-        .glass-panel {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #050810;
+            font-family: 'Fira Code', monospace;
+            color: #00ffcc;
         }
-        
-        .fade-in { animation: fadeIn 0.6s ease-out forwards; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        /* --- High-Speed Racing Grid Animation --- */
+        .grid-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            perspective: 600px;
+            overflow: hidden;
+            z-index: -2;
+            background: radial-gradient(circle at center, #0a1128 0%, #050810 100%);
         }
+
+        .moving-grid {
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 200%;
+            height: 150%;
+            background-image: 
+                linear-gradient(to right, rgba(0, 255, 204, 0.15) 2px, transparent 2px),
+                linear-gradient(to top, rgba(0, 255, 204, 0.15) 2px, transparent 2px);
+            background-size: 60px 60px;
+            transform: rotateX(75deg);
+            animation: raceGrid 0.8s linear infinite;
+            box-shadow: inset 0 0 100px 100px #050810;
+        }
+
+        @keyframes raceGrid {
+            0% { transform: rotateX(75deg) translateY(0); }
+            100% { transform: rotateX(75deg) translateY(60px); }
+        }
+
+        /* Horizon Glow */
+        .horizon {
+            position: absolute;
+            top: 40%;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(0, 120, 212, 0.5), transparent);
+            filter: blur(20px);
+            z-index: -1;
+        }
+
+        /* --- Terminal / Typing Styles --- */
+        .terminal-box {
+            background: rgba(10, 15, 30, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            box-shadow: 0 0 40px rgba(0, 255, 204, 0.1);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background-color: #00ffcc;
+            animation: blink 1s step-end infinite;
+            vertical-align: bottom;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* --- Neon Button Styles --- */
+        .neon-button {
+            position: relative;
+            display: inline-block;
+            padding: 15px 30px;
+            color: #050810;
+            background: #00ffcc;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-decoration: none;
+            overflow: hidden;
+            transition: 0.2s;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #00ffcc, 0 0 40px #00ffcc, 0 0 80px #00ffcc;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+
+        .neon-button.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .neon-button:hover {
+            background: #fff;
+            color: #050810;
+            box-shadow: 0 0 10px #fff, 0 0 40px #fff, 0 0 80px #fff;
+        }
+
+        .keyword { color: #38bdf8; font-weight: bold; }
+        .success { color: #27C93F; font-weight: bold; }
+        .warning { color: #FFBD2E; font-weight: bold; }
     </style>
 </head>
-<body class="bg-cloudBg text-slate-300 font-sans antialiased selection:bg-accentCyan selection:text-cloudBg overflow-x-hidden">
+<body class="flex items-center justify-center min-h-screen relative">
 
-    <!-- Enterprise Grid Background -->
-    <div class="fixed inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-20 pointer-events-none z-0"></div>
-    <div class="fixed inset-0 bg-gradient-to-b from-cloudBg via-transparent to-cloudBg pointer-events-none z-0"></div>
+    <!-- Racing Grid Background -->
+    <div class="grid-container">
+        <div class="moving-grid"></div>
+    </div>
+    <div class="horizon"></div>
 
-    <!-- Executive Navigation -->
-    <header class="fixed top-0 w-full glass-panel z-50 border-b border-cloudBorder">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2 group">
-                <div class="w-8 h-8 bg-gradient-to-br from-accentBlue to-accentCyan rounded-lg flex items-center justify-center text-cloudBg font-bold font-mono group-hover:shadow-[0_0_15px_rgba(0,240,255,0.5)] transition-all">G</div>
-                <span class="text-lg font-bold text-white tracking-tight">Gobinath<span class="text-accentCyan">.</span></span>
-            </a>
-            <nav class="hidden md:flex gap-8 text-xs font-mono font-medium text-slate-400 uppercase tracking-widest">
-                <a href="#engineering" class="hover:text-accentCyan transition">Engineering</a>
-                <a href="#competencies" class="hover:text-accentCyan transition">Skills</a>
-                <a href="#projects" class="hover:text-accentCyan transition">Projects</a>
-                <a href="#experience" class="hover:text-accentCyan transition">Experience</a>
-            </nav>
-            <a href="resume.pdf" download class="hidden md:flex items-center gap-2 px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider text-accentCyan border border-accentCyan/30 rounded hover:bg-accentCyan/10 transition">
-                <i class="fa-solid fa-cloud-arrow-down"></i> Resume.pdf
+    <!-- Central Terminal Window -->
+    <div class="terminal-box w-11/12 max-w-4xl rounded-xl overflow-hidden z-10 flex flex-col h-[75vh] md:h-[65vh]">
+        <!-- Terminal Header -->
+        <div class="bg-slate-900/80 px-4 py-3 flex items-center justify-between border-b border-cyan-500/30">
+            <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+                <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+            </div>
+            <div class="text-[11px] text-cyan-500/70 tracking-widest uppercase">Gobi-Main-Node_v2.0</div>
+            <i class="fa-solid fa-microchip text-cyan-500/70"></i>
+        </div>
+
+        <!-- Typing Content Area -->
+        <div class="p-6 md:p-10 flex-1 overflow-y-auto text-sm md:text-base leading-relaxed text-cyan-300">
+            <div id="typewriter-content" class="whitespace-pre-wrap"></div><span class="cursor" id="cursor"></span>
+        </div>
+
+        <!-- Action Area (Fades in at the end) -->
+        <div class="p-6 border-t border-cyan-500/20 bg-slate-900/50 flex justify-center items-center h-32">
+            <a href="https://gobinath-cloudarch.github.io/portfolio" id="action-btn" class="neon-button">
+                <i class="fa-solid fa-rocket mr-2"></i> For Portfolio Click Here
             </a>
         </div>
-    </header>
+    </div>
 
-    <main class="relative z-10 pt-32 pb-32 space-y-32">
+    <script>
+        // The text to be typed out line by line
+        const linesToType = [
+            "> INITIALIZING SECURE CONNECTION... <span class='success'>[OK]</span>",
+            "> AUTHENTICATING USER: GOBINATH RAMAKRISHNAN...",
+            "> ACCESS GRANTED. WELCOME TO THE MASTER NODE.\n",
+            "<span class='keyword'>[SYSTEM BIO]</span> 12+ Years Enterprise Cloud & Platform Engineer.",
+            "<span class='keyword'>[CREDENTIALS]</span> AZ-305 Architect Expert, AZ-104 Admin, AWS Cloud Quest.\n",
+            "<span class='warning'>LOADING FEATURED ENGINEERING PROJECT: PHOENIX SUITE...</span>",
+            "> Booting Multi-Threaded Execution Engine...",
+            "> Establishing resilient WinRM Server connections...",
+            "> Initiating continuous hardware telemetry via Glass UI...",
+            "> Automating remote server patching protocols...",
+            "> Bypassing restrictions: Executing precision XML overrides (Excluding PhoenixIA)...",
+            "> Synchronizing Police & IA Enterprise SQL Databases...",
+            "> Deployment pipelines fully automated. Zero-touch achieved.\n",
+            "<span class='success'>SYSTEM STATUS: 100% OPERATIONAL & HIGHLY AVAILABLE.</span>",
+            "> Ready to launch full interactive portfolio..."
+        ];
+
+        const container = document.getElementById("typewriter-content");
+        const actionBtn = document.getElementById("action-btn");
         
-        <!-- Hero Command Center -->
-        <section id="hero" class="px-6 max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
-            <div class="flex-1 space-y-8 fade-in">
-                <div class="inline-flex items-center gap-3 px-3 py-1.5 border border-accentCyan/30 bg-accentCyan/5 rounded-full">
-                    <div class="relative flex h-2.5 w-2.5">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accentCyan opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accentCyan"></span>
-                    </div>
-                    <span class="text-[11px] font-mono font-semibold uppercase tracking-widest text-accentCyan">Infrastructure Master Node Online</span>
-                </div>
+        let currentLine = 0;
+        let currentChar = 0;
+        let typingSpeed = 30; // Milliseconds per character
+        let lineDelay = 500;  // Milliseconds pause between lines
+
+        // Strip HTML tags for character counting but inject them properly
+        function typeWriter() {
+            if (currentLine < linesToType.length) {
+                let lineHtml = linesToType[currentLine];
                 
-                <div class="space-y-4">
-                    <h1 class="text-5xl sm:text-7xl font-extrabold text-white tracking-tight leading-[1.1]">
-                        Gobinath <br> Ramakrishnan
-                    </h1>
-                    <h2 class="text-xl sm:text-2xl font-medium text-slate-400">
-                        Senior Platform Engineer <span class="text-accentBlue">&</span> Cloud Architect
-                    </h2>
-                </div>
+                // We inject the whole line at once using a simulated delay to keep HTML tags intact
+                // For a true char-by-char with HTML, it requires complex parsing. 
+                // A great visual hack is to type text normally, but drop HTML lines in instantly with a delay.
+                
+                // Let's implement a char-by-char that handles HTML blocks instantly
+                let isTag = false;
+                let currentText = "";
+                let i = 0;
 
-                <p class="text-slate-400 max-w-xl text-lg leading-relaxed">
-                    Orchestrating highly available IT infrastructure, executing complex system upgrades, and engineering zero-touch automation pipelines for enterprise-scale environments.
-                </p>
-
-                <div class="flex flex-wrap gap-4 pt-2">
-                    <a href="#engineering" class="px-6 py-3.5 bg-white text-cloudBg font-bold rounded-lg hover:bg-slate-200 transition shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                        Explore Architecture
-                    </a>
-                    <a href="resume.pdf" download class="px-6 py-3.5 bg-cloudPanel border border-cloudBorder text-white font-medium rounded-lg hover:border-accentCyan/50 transition flex items-center gap-2 group">
-                        <i class="fa-solid fa-download text-accentCyan group-hover:scale-110 transition"></i> Fetch Credentials
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Terminal Output -->
-            <div class="flex-1 w-full max-w-lg lg:max-w-full fade-in" style="animation-delay: 0.2s;">
-                <div class="rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-cloudBorder bg-[#0D1117]">
-                    <div class="bg-[#161B22] px-4 py-3 flex items-center justify-between border-b border-cloudBorder">
-                        <div class="flex items-center gap-2">
-                            <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
-                            <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
-                            <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
-                        </div>
-                        <div class="text-[11px] text-slate-500 font-mono">root@enterprise-sys:~</div>
-                    </div>
-                    <div class="p-6 font-mono text-sm text-slate-300 space-y-3">
-                        <div class="flex gap-2">
-                            <span class="text-accentCyan">❯</span>
-                            <span class="text-white">sysctl get-uptime</span>
-                        </div>
-                        <div class="text-slate-400 pl-4">12+ Years Enterprise IT Operations</div>
+                function typeChar() {
+                    if (i < lineHtml.length) {
+                        let char = lineHtml.charAt(i);
                         
-                        <div class="flex gap-2 pt-2">
-                            <span class="text-accentCyan">❯</span>
-                            <span class="text-white">az network vnet show --name CoreNetwork</span>
-                        </div>
-                        <div class="text-slate-400 pl-4">Location: Chennai, Tamil Nadu, India</div>
-                        <div class="text-slate-400 pl-4">Status: Active & Highly Available</div>
+                        if (char === '<') isTag = true;
                         
-                        <div class="flex gap-2 pt-2 items-center">
-                            <span class="text-accentCyan">❯</span>
-                            <span class="w-2 h-4 bg-accentCyan animate-pulse"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                        currentText += char;
+                        container.innerHTML = currentText;
+                        i++;
 
-        <!-- Advanced Engineering & Automation (Generated from Data) -->
-        <section id="engineering" class="px-6 max-w-7xl mx-auto">
-            <div class="mb-12">
-                <div class="text-accentCyan font-mono text-sm uppercase tracking-widest mb-2">Systems & Automation</div>
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Advanced Engineering Capabilities</h2>
-            </div>
-            
-            <!-- Bento Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        if (isTag) {
+                            if (char === '>') isTag = false;
+                            typeChar(); // Skip delay for HTML tags
+                        } else {
+                            // Scroll to bottom as it types
+                            container.parentElement.scrollTop = container.parentElement.scrollHeight;
+                            setTimeout(typeChar, typingSpeed);
+                        }
+                    } else {
+                        // Line finished, add a newline and move to next line
+                        container.innerHTML += '\n';
+                        currentLine++;
+                        setTimeout(typeWriter, lineDelay);
+                    }
+                }
                 
-                <!-- Automation Node -->
-                <div class="glass-panel p-8 rounded-2xl lg:col-span-2 group hover:border-accentCyan/30 transition-all duration-300">
-                    <i class="fa-solid fa-gears text-2xl text-accentBlue mb-4"></i>
-                    <h3 class="text-xl font-bold text-white mb-3">PowerShell & Deployment Orchestration</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Develop and refine complex scripts to aggressively automate remote server patching, IIS binding management, and network share auditing across complex, US-based customer environments. Engineered custom tools for zero-touch updates and clearing temporary payload files across active server instances.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">PowerShell</span>
-                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">WinRM</span>
-                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">IIS Bindings</span>
-                    </div>
-                </div>
-
-                <!-- Data & SQL Node -->
-                <div class="glass-panel p-8 rounded-2xl group hover:border-accentCyan/30 transition-all duration-300">
-                    <i class="fa-solid fa-database text-2xl text-accentBlue mb-4"></i>
-                    <h3 class="text-xl font-bold text-white mb-3">Database Synchronization</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Architect differential backup jobs and advanced data synchronization workflows for mission-critical setups, specifically handling complex multi-database schemas (e.g., configurations bridging independent Police and IA databases).
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">MS SQL</span>
-                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">Data Sync</span>
-                    </div>
-                </div>
-
-                <!-- Logic Node -->
-                <div class="glass-panel p-8 rounded-2xl group hover:border-accentCyan/30 transition-all duration-300">
-                    <i class="fa-solid fa-code-merge text-2xl text-accentBlue mb-4"></i>
-                    <h3 class="text-xl font-bold text-white mb-3">Precision XML Deployment Logic</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Engineer precision deployment logic with strict conditional validation. Designed multi-step XML update processes capable of explicitly bypassing target modules (e.g., dynamically excluding 'PhoenixIA' configurations during specific Step 2 and Step 4 deployment phases).
-                    </p>
-                </div>
-
-                <!-- DevOps Node -->
-                <div class="glass-panel p-8 rounded-2xl lg:col-span-2 group hover:border-accentCyan/30 transition-all duration-300">
-                    <i class="fa-brands fa-docker text-2xl text-accentBlue mb-4"></i>
-                    <h3 class="text-xl font-bold text-white mb-3">Modern Cloud-Native Scaling</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Continuously expanding hybrid infrastructure architectures by integrating structured learning paths and deployments involving Jenkins CI/CD pipelines, Docker containerization, Kubernetes orchestration, and Terraform Infrastructure-as-Code (IaC).
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">Jenkins</span>
-                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">Docker</span>
-                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">Kubernetes</span>
-                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">Terraform</span>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Featured Project: Phoenix Ecosystem -->
-        <section id="projects" class="px-6 max-w-7xl mx-auto">
-            <div class="glass-panel border-l-4 border-l-accentCyan rounded-r-2xl p-8 lg:p-12 shadow-2xl relative overflow-hidden">
-                <div class="absolute -top-[150px] -right-[150px] w-[400px] h-[400px] bg-accentCyan/5 rounded-full blur-[120px] pointer-events-none"></div>
+                typeChar();
                 
-                <div class="flex flex-col xl:flex-row gap-12 relative z-10">
-                    <div class="flex-1 space-y-6">
-                        <div class="text-accentBlue font-mono text-xs uppercase tracking-widest">Enterprise Framework</div>
-                        <h3 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-                            Phoenix Suite: Next-Gen Orchestrator
-                        </h3>
-                        <p class="text-slate-400 leading-relaxed">
-                            A highly customized, multi-threaded management ecosystem delivering continuous telemetry, automated schema synchronizations, and zero-touch deployment pipelines for enterprise environments.
-                        </p>
-                        
-                        <ul class="space-y-3 text-sm text-slate-400 border-l border-cloudBorder pl-4 mt-6">
-                            <li><strong class="text-white">UI Architecture:</strong> Developed a futuristic-themed Glass UI dashboard.</li>
-                            <li><strong class="text-white">Execution Engine:</strong> Built on robust WinRM server connection logic and multi-threading execution.</li>
-                            <li><strong class="text-white">Target Systems:</strong> Manages Enterprise SQL syncing and Application node updates.</li>
-                        </ul>
+            } else {
+                // Typing finished, show the button
+                actionBtn.classList.add("visible");
+            }
+        }
 
-                        <div class="pt-6">
-                            <a href="https://github.com/Gobinath-CloudArch/MyScripts/raw/main/InstallationMasterToolv8.52_20260830_0203.zip" class="inline-flex items-center gap-3 px-6 py-3.5 bg-accentCyan/10 border border-accentCyan text-accentCyan hover:bg-accentCyan hover:text-cloudBg font-bold rounded-lg transition-all">
-                                <i class="fas fa-download"></i> Download Artifact v8.52
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Slideshow Integration (Hidden by default, structure maintained) -->
-                    <div class="flex-1 w-full max-w-2xl mx-auto rounded-xl overflow-hidden border border-cloudBorder bg-black aspect-video relative group">
-                        <div class="absolute inset-0 flex items-center justify-center text-slate-600 font-mono text-sm border-2 border-dashed border-cloudBorder m-4 rounded">
-                            [Telemetry Dashboard Preview] <br> Requires 'monitor.jpg' & 'sync-main.png'
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Core Competencies -->
-        <section id="competencies" class="px-6 max-w-7xl mx-auto">
-            <div class="mb-12">
-                <div class="text-accentCyan font-mono text-sm uppercase tracking-widest mb-2">Technical Matrix</div>
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Infrastructure & Cloud Capabilities</h2>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Azure -->
-                <div class="bg-cloudPanel border border-cloudBorder p-6 rounded-xl hover:border-accentBlue transition">
-                    <i class="fab fa-microsoft text-2xl text-accentBlue mb-4"></i>
-                    <h4 class="text-white font-bold mb-2">Azure Architecture</h4>
-                    <p class="text-xs text-slate-400 space-y-1">Resource Groups, VMs, Azure AD, NSG, VPN, VNet Peering, Azure Monitor, Azure Backup.</p>
-                </div>
-                <!-- AWS -->
-                <div class="bg-cloudPanel border border-cloudBorder p-6 rounded-xl hover:border-orange-400 transition">
-                    <i class="fab fa-aws text-2xl text-orange-400 mb-4"></i>
-                    <h4 class="text-white font-bold mb-2">AWS Foundations</h4>
-                    <p class="text-xs text-slate-400 space-y-1">Cloud architecture principles, IAM, EC2 provisioning, and core networking.</p>
-                </div>
-                <!-- Virtualization -->
-                <div class="bg-cloudPanel border border-cloudBorder p-6 rounded-xl hover:border-emerald-400 transition">
-                    <i class="fas fa-server text-2xl text-emerald-400 mb-4"></i>
-                    <h4 class="text-white font-bold mb-2">Virtualization & OS</h4>
-                    <p class="text-xs text-slate-400 space-y-1">VMware ESXi 6.5/7.0, Hyper-V, Windows Server 2012/2016/2019, Linux (Ubuntu/CentOS).</p>
-                </div>
-                <!-- Networks -->
-                <div class="bg-cloudPanel border border-cloudBorder p-6 rounded-xl hover:border-purple-400 transition">
-                    <i class="fas fa-network-wired text-2xl text-purple-400 mb-4"></i>
-                    <h4 class="text-white font-bold mb-2">Enterprise Networking</h4>
-                    <p class="text-xs text-slate-400 space-y-1">Active Directory (GPO/OU), LAN/WAN, DHCP, DNS, IP Routing, IIS & SSL.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Timeline -->
-        <section id="experience" class="px-6 max-w-7xl mx-auto">
-            <div class="mb-12">
-                <div class="text-accentCyan font-mono text-sm uppercase tracking-widest mb-2">Career Trajectory</div>
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Professional Experience</h2>
-            </div>
-            
-            <div class="relative border-l border-cloudBorder ml-4 space-y-12 pb-4">
-                
-                <!-- Job 1 -->
-                <div class="relative pl-8">
-                    <div class="absolute w-3 h-3 bg-accentCyan rounded-full -left-[6.5px] top-2 shadow-[0_0_10px_#00F0FF]"></div>
-                    <div class="mb-1 text-xs font-mono text-accentCyan">June 2024 – Present</div>
-                    <h3 class="text-xl font-bold text-white">Installation Engineer</h3>
-                    <p class="text-slate-400 text-sm mb-4">Chenosa Technology Solutions Pvt Ltd</p>
-                    <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
-                        <li>Built and verified software packages for deployment across active enterprise environments.</li>
-                        <li>Managed Azure-based cloud infrastructure and resources.</li>
-                        <li>Performed SQL backups and critical synchronization fixes.</li>
-                        <li>Applied manual hotfixes and supported wide-scale application deployment via IIS.</li>
-                    </ul>
-                </div>
-
-                <!-- Job 2 -->
-                <div class="relative pl-8">
-                    <div class="absolute w-3 h-3 bg-cloudBorder rounded-full -left-[6.5px] top-2"></div>
-                    <div class="mb-1 text-xs font-mono text-slate-500">Dec 2017 – May 2024</div>
-                    <h3 class="text-xl font-bold text-slate-200">Senior Support Administrator</h3>
-                    <p class="text-slate-400 text-sm mb-4">Sungwoo Stamping Pvt Ltd</p>
-                    <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
-                        <li>Administered AD, DNS, DHCP, and file/print servers for robust enterprise infrastructure.</li>
-                        <li>Managed patching, antivirus deployment, and endpoint security for 130+ systems.</li>
-                        <li>Configured routers, switches, and deployed enterprise VoIP infrastructures.</li>
-                    </ul>
-                </div>
-
-                <!-- Job 3 -->
-                <div class="relative pl-8">
-                    <div class="absolute w-3 h-3 bg-cloudBorder rounded-full -left-[6.5px] top-2"></div>
-                    <div class="mb-1 text-xs font-mono text-slate-500">Nov 2013 – Nov 2017</div>
-                    <h3 class="text-xl font-bold text-slate-300">System Administrator</h3>
-                    <p class="text-slate-400 text-sm mb-4">SSS Solutions Pvt Ltd (Client: Alagendran Automobiles)</p>
-                    <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
-                        <li>Provided comprehensive remote desktop support and led SLA compliance reporting.</li>
-                        <li>Managed AD user setups, proactive system patching, and software rollouts.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Certifications -->
-        <section id="certifications" class="px-6 max-w-7xl mx-auto">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="glass-panel p-6 rounded-xl text-center flex flex-col items-center">
-                    <i class="fab fa-microsoft text-2xl text-accentBlue mb-3"></i>
-                    <h4 class="font-bold text-white text-sm mb-1">AZ-305</h4>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-widest">Architect Expert</p>
-                </div>
-                <div class="glass-panel p-6 rounded-xl text-center flex flex-col items-center">
-                    <i class="fab fa-microsoft text-2xl text-accentBlue mb-3"></i>
-                    <h4 class="font-bold text-white text-sm mb-1">AZ-104</h4>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-widest">Admin Associate</p>
-                </div>
-                <div class="glass-panel p-6 rounded-xl text-center flex flex-col items-center">
-                    <i class="fab fa-aws text-2xl text-orange-400 mb-3"></i>
-                    <h4 class="font-bold text-white text-sm mb-1">Cloud Quest</h4>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-widest">Practitioner</p>
-                </div>
-                <div class="glass-panel p-6 rounded-xl text-center flex flex-col items-center">
-                    <i class="fas fa-graduation-cap text-2xl text-purple-400 mb-3"></i>
-                    <h4 class="font-bold text-white text-sm mb-1">BCA Degree</h4>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-widest">TNOU (2020)</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Footer -->
-        <section id="contact" class="px-6 max-w-7xl mx-auto">
-            <div class="glass-panel border-t border-cloudBorder p-12 rounded-2xl text-center space-y-8">
-                <div>
-                    <h2 class="text-2xl font-bold text-white mb-2">Initialize Connection</h2>
-                    <p class="text-sm text-slate-400 max-w-xl mx-auto">
-                        Available for architectural discussions, infrastructure audits, and enterprise automation consulting.
-                    </p>
-                </div>
-                <div class="flex flex-wrap justify-center gap-6">
-                    <a href="mailto:gobiramakrishnan@yahoo.com" class="text-slate-300 hover:text-white transition font-mono text-sm flex items-center gap-2">
-                        <i class="fas fa-envelope text-accentCyan"></i> gobiramakrishnan@yahoo.com
-                    </a>
-                    <a href="https://www.linkedin.com/in/gobinath-ramakrishnan-391127169/" target="_blank" class="text-slate-300 hover:text-white transition font-mono text-sm flex items-center gap-2">
-                        <i class="fab fa-linkedin text-accentCyan"></i> LinkedIn Profile
-                    </a>
-                </div>
-            </div>
-        </section>
-
-    </main>
+        // Start typing after a short initial boot delay
+        setTimeout(typeWriter, 1000);
+    </script>
 </body>
 </html>
