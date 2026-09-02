@@ -1,270 +1,263 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gobinath Ramakrishnan | AI Automation & Enterprise Architecture</title>
+    <title>Gobinath Ramakrishnan | High-Velocity Cloud Architecture</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        trackDark: '#0a0a0f',
+                        trackRed: '#ff003c',
+                        neonCyan: '#00ffcc',
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
-            background-color: #03040b;
-            font-family: 'Fira Code', monospace;
+            background-color: #0a0a0f;
             color: #e2e8f0;
+            overflow-x: hidden;
         }
 
-        /* 4K Ready 3D Racing Environment */
-        .scene {
+        /* --- Fullscreen Video Background --- */
+        .video-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            perspective: 800px;
+            z-index: -2;
             overflow: hidden;
-            z-index: 0;
+            background-color: #000;
         }
 
-        .sun {
-            position: absolute;
-            bottom: 45%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40vw;
-            max-width: 600px;
-            aspect-ratio: 1 / 1;
-            background: linear-gradient(180deg, #ff007f 0%, #ffaa00 100%);
-            border-radius: 50%;
-            box-shadow: 0 0 100px #ff007f, 0 0 200px #ffaa00;
-            z-index: 1;
+        .bg-video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            transform: scale(1.05); /* Slight scale to hide edges */
         }
 
-        .sun::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
+        /* Dark Cinematic Overlay */
+        .video-overlay {
+            position: fixed;
+            top: 0;
             left: 0;
-            width: 100%;
-            height: 50%;
-            background: repeating-linear-gradient(to bottom, transparent, transparent 10px, #03040b 10px, #03040b 20px);
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(
+                to bottom, 
+                rgba(10, 10, 15, 0.7) 0%, 
+                rgba(10, 10, 15, 0.85) 50%, 
+                rgba(10, 10, 15, 0.98) 100%
+            );
+            box-shadow: inset 0 0 150px rgba(255, 0, 60, 0.1);
         }
 
-        .grid-plane {
-            position: absolute;
-            width: 300vw;
-            height: 150vh;
-            left: -100vw;
-            top: 50%;
-            background-image: 
-                linear-gradient(0deg, transparent 24%, rgba(0, 255, 204, 0.9) 25%, rgba(0, 255, 204, 0.9) 26%, transparent 27%, transparent 74%, rgba(0, 255, 204, 0.9) 75%, rgba(0, 255, 204, 0.9) 76%, transparent 77%, transparent),
-                linear-gradient(90deg, transparent 24%, rgba(0, 255, 204, 0.9) 25%, rgba(0, 255, 204, 0.9) 26%, transparent 27%, transparent 74%, rgba(0, 255, 204, 0.9) 75%, rgba(0, 255, 204, 0.9) 76%, transparent 77%, transparent);
-            background-size: 80px 80px;
-            transform: rotateX(75deg);
-            animation: race-forward 0.4s linear infinite;
-            z-index: 2;
-            box-shadow: inset 0px 80px 150px #03040b;
-            border-top: 3px solid #00ffcc;
+        /* --- UI Elements --- */
+        .glass-panel {
+            background: rgba(15, 20, 30, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 0, 60, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        @keyframes race-forward {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 80px; }
-        }
-
-        .race-car {
-            position: absolute;
-            bottom: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-            animation: car-bounce 0.15s infinite alternate, car-steer 4s ease-in-out infinite alternate;
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8));
-        }
-
-        @keyframes car-bounce {
-            0% { transform: translateX(-50%) translateY(0px); }
-            100% { transform: translateX(-50%) translateY(4px); }
-        }
-
-        @keyframes car-steer {
-            0% { left: 49%; }
-            100% { left: 51%; }
-        }
-
-        .exhaust {
-            position: absolute;
-            bottom: 10px;
-            width: 15px;
-            height: 15px;
-            background: #ffaa00;
-            border-radius: 50%;
-            filter: blur(5px);
-            animation: exhaust-burn 0.1s infinite alternate;
-        }
-        .exhaust.left { left: 20%; }
-        .exhaust.right { right: 20%; }
-
-        @keyframes exhaust-burn {
-            0% { opacity: 0.8; transform: scale(1); background: #ffaa00; }
-            100% { opacity: 1; transform: scale(1.5); background: #ff007f; box-shadow: 0 0 20px #ff007f; }
-        }
-
-        /* Content UI */
-        .ui-layer {
-            position: relative;
-            z-index: 10;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 4vh 2vw 10vh 2vw;
+        /* Animations */
+        .fade-up {
             opacity: 0;
-            animation: boot-system 2s ease-out 1.5s forwards;
+            transform: translateY(30px);
+            animation: fadeUpAnim 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        @keyframes boot-system {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
+        @keyframes fadeUpAnim {
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .terminal-panel {
-            background: rgba(11, 15, 25, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 255, 204, 0.4);
-            box-shadow: 0 0 50px rgba(0, 255, 204, 0.15), inset 0 0 20px rgba(0, 255, 204, 0.05);
-            border-radius: 16px;
-            width: 100%;
-            max-width: 1200px;
-            overflow: hidden;
-        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
 
-        .neon-text {
-            color: #00ffcc;
-            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
-        }
-
+        /* Pulse Button */
         .portfolio-btn {
-            background: linear-gradient(90deg, #00ffcc, #38bdf8);
-            color: #03040b;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4), 0 0 40px rgba(56, 189, 248, 0.2);
+            position: relative;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
-        .portfolio-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 255, 204, 0.6), 0 0 60px rgba(56, 189, 248, 0.4);
-            color: #000;
+        .portfolio-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(45deg) translateY(-100%);
+            animation: shine 3s infinite;
         }
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateY(-100%); }
+            20%, 100% { transform: rotate(45deg) translateY(100%); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #ff003c; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ff4d79; }
     </style>
 </head>
 <body>
 
-    <!-- 4K Synthwave Racing Background -->
-    <div class="scene">
-        <div class="sun"></div>
-        <div class="grid-plane"></div>
-        <div class="race-car">
-            <div class="exhaust left"></div>
-            <div class="exhaust right"></div>
-            <!-- High-Res Car Silhouette -->
-            <svg width="240" height="120" viewBox="0 0 512 256" fill="#03040b" stroke="#00ffcc" stroke-width="8" xmlns="http://www.w3.org/2000/svg">
-                <!-- Custom Rear Car Shape -->
-                <path d="M50 200 L80 100 L160 50 L352 50 L432 100 L462 200 Z" fill="#0a0f1a" />
-                <path d="M100 120 L170 70 L342 70 L412 120 Z" fill="#00ffcc" opacity="0.2" stroke="none" />
-                <circle cx="100" cy="180" r="25" fill="#ff007f" stroke="none" filter="blur(4px)" />
-                <circle cx="412" cy="180" r="25" fill="#ff007f" stroke="none" filter="blur(4px)" />
-                <rect x="180" y="190" width="152" height="30" fill="#03040b" stroke="#38bdf8" />
-                <text x="256" y="212" font-size="16" fill="#38bdf8" text-anchor="middle" font-family="monospace">GOBI-90</text>
-            </svg>
-        </div>
+    <!-- Cinematic Video Background -->
+    <div class="video-container">
+        <!-- Make sure Homepage.MP4 is uploaded exactly with this name in the repository root -->
+        <video autoplay loop muted playsinline class="bg-video">
+            <source src="Homepage.MP4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
     </div>
+    <div class="video-overlay"></div>
 
-    <!-- Interface Layer -->
-    <div class="ui-layer">
+    <!-- Main Content Container -->
+    <main class="relative z-10 min-h-screen flex flex-col items-center pt-20 pb-24 px-6">
         
-        <!-- Primary Call to Action -->
-        <div class="mb-8 z-20 w-full max-w-1200 flex justify-center mt-4">
-            <a href="https://gobinath-cloudarch.github.io/portfolio" class="portfolio-btn text-xl md:text-2xl font-bold py-4 px-10 rounded-full flex items-center gap-3">
-                <i class="fa-solid fa-bolt"></i> For Portfolio Click Here
-            </a>
+        <!-- Header / Status Indicator -->
+        <div class="w-full max-w-5xl flex justify-between items-center mb-16 fade-up">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-trackRed/20 border border-trackRed/50 rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-gauge-high text-trackRed"></i>
+                </div>
+                <div>
+                    <h1 class="font-mono font-bold text-white tracking-widest uppercase text-sm">Gobi_Master_Node</h1>
+                    <p class="font-mono text-xs text-trackRed animate-pulse">Engine Armed & Ready</p>
+                </div>
+            </div>
         </div>
 
-        <div class="terminal-panel flex flex-col mt-4">
-            <div class="bg-slate-900 px-6 py-4 flex items-center justify-between border-b border-cyan-500/30">
-                <div class="flex items-center gap-3">
-                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    <span class="ml-4 text-xs tracking-widest text-cyan-400 font-bold uppercase">System_Override_Log.exe</span>
-                </div>
-                <i class="fa-solid fa-microchip text-cyan-400"></i>
+        <!-- Hero Section -->
+        <div class="w-full max-w-5xl text-center space-y-8 fade-up delay-1">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight uppercase italic" style="transform: skewX(-5deg);">
+                High-Velocity <br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-trackRed to-orange-500">Cloud Architecture</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto font-mono">
+                Driving 12+ years of precision engineering, zero-touch deployment pipelines, and maximum-performance enterprise infrastructure.
+            </p>
+
+            <!-- Primary Portfolio Button -->
+            <div class="pt-8 pb-12 flex justify-center">
+                <a href="https://gobinath-cloudarch.github.io/portfolio" class="portfolio-btn bg-trackRed hover:bg-red-600 text-white font-bold py-4 px-10 rounded-full text-lg shadow-[0_0_30px_rgba(255,0,60,0.5)] border border-red-400 flex items-center gap-3">
+                    <i class="fa-solid fa-flag-checkered"></i> For Portfolio Click Here
+                </a>
             </div>
+        </div>
+
+        <!-- Terminal: AI Automation Implementation History -->
+        <div class="w-full max-w-5xl mt-8 fade-up delay-2">
             
-            <div class="p-8 md:p-12">
-                <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">
-                    Gobinath Ramakrishnan
-                </h1>
-                <h2 class="text-xl md:text-2xl neon-text mb-8 border-b border-cyan-500/20 pb-4">
-                    Enterprise AI Automation & Implementation History
-                </h2>
+            <div class="flex items-center gap-3 mb-6">
+                <i class="fa-solid fa-microchip text-neonCyan text-2xl"></i>
+                <h2 class="text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">AI Automation Implementation History</h2>
+            </div>
 
-                <div class="space-y-10">
-                    
-                    <!-- Project 1 -->
-                    <div class="relative pl-6 border-l-2 border-cyan-500/50 hover:border-cyan-400 transition-colors">
-                        <div class="absolute -left-[9px] top-1 w-4 h-4 bg-cyan-500 rounded-full shadow-[0_0_10px_#00ffcc]"></div>
-                        <h3 class="text-2xl font-bold text-white mb-2 flex items-center gap-3">
-                            <i class="fa-solid fa-code-merge text-sky-400"></i> Precision XML Deployment & Module Isolation
-                        </h3>
-                        <div class="bg-slate-900/50 border border-slate-700 p-5 rounded-lg text-slate-300 leading-relaxed">
-                            <p class="mb-3"><strong>Implementation Scope:</strong> Directed mission-critical changes to highly sensitive deployment logic for enterprise release pipelines.</p>
-                            <ul class="list-none space-y-2">
-                                <li><span class="text-cyan-400">>></span> <strong>Execution:</strong> Architected specific override paths and dynamic validation to selectively update application configurations.</li>
-                                <li><span class="text-cyan-400">>></span> <strong>Outcome:</strong> Successfully isolated and excluded <em>PhoenixIA</em> from XML updates during both <strong>Step 2</strong> and <strong>Step 4</strong> of the deployment cycle, ensuring absolute stability for independent modules while parallel systems were patched.</li>
-                            </ul>
+            <!-- Highly Technical Grid -->
+            <div class="grid grid-cols-1 gap-6">
+                
+                <!-- Entry 1 -->
+                <div class="glass-panel p-6 md:p-8 rounded-xl relative overflow-hidden group">
+                    <div class="absolute left-0 top-0 w-1 h-full bg-neonCyan group-hover:w-2 transition-all"></div>
+                    <div class="flex items-start gap-4">
+                        <div class="mt-1 bg-slate-900 border border-slate-700 p-2 rounded text-neonCyan">
+                            <i class="fa-solid fa-code-merge"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 font-mono">Precision XML Deployment & Module Isolation</h3>
+                            <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+                                Directed mission-critical changes to highly sensitive deployment logic for enterprise release pipelines. Engineered strict XML deployment schemas with dynamic conditional validation.
+                            </p>
+                            <div class="bg-black/50 p-4 rounded border border-slate-800 font-mono text-xs text-slate-400">
+                                <span class="text-trackRed">></span> <span class="text-white">Execution Parameters:</span> Architected specific override paths to selectively update application configurations without breaking dependencies.<br><br>
+                                <span class="text-neonCyan">></span> <span class="text-white">System Output:</span> Successfully isolated and explicitly excluded <strong>PhoenixIA</strong> from XML updates during both <strong>Step 2</strong> and <strong>Step 4</strong> deployment phases, ensuring absolute stability for independent modules while parallel systems were patched.
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Project 2 -->
-                    <div class="relative pl-6 border-l-2 border-sky-500/50 hover:border-sky-400 transition-colors">
-                        <div class="absolute -left-[9px] top-1 w-4 h-4 bg-sky-500 rounded-full shadow-[0_0_10px_#38bdf8]"></div>
-                        <h3 class="text-2xl font-bold text-white mb-2 flex items-center gap-3">
-                            <i class="fa-solid fa-server text-cyan-400"></i> Remote Server Orchestration & Payload Cleanup
-                        </h3>
-                        <div class="bg-slate-900/50 border border-slate-700 p-5 rounded-lg text-slate-300 leading-relaxed">
-                            <p class="mb-3"><strong>Implementation Scope:</strong> Developed and refined automated PowerShell scripts to manage fleet-wide server operations and maintenance routines for distributed US-based customer environments.</p>
-                            <ul class="list-none space-y-2">
-                                <li><span class="text-sky-400">>></span> <strong>Execution:</strong> Engineered comprehensive deployment scripts designed to push zero-touch updates across active server instances and handle complex IIS binding management.</li>
-                                <li><span class="text-sky-400">>></span> <strong>Outcome:</strong> Implemented strict automation rules for clearing temporary payload files post-deployment, mitigating storage bloat, and seamlessly auditing network shares to maintain strict compliance standards.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="relative pl-6 border-l-2 border-purple-500/50 hover:border-purple-400 transition-colors">
-                        <div class="absolute -left-[9px] top-1 w-4 h-4 bg-purple-500 rounded-full shadow-[0_0_10px_#a855f7]"></div>
-                        <h3 class="text-2xl font-bold text-white mb-2 flex items-center gap-3">
-                            <i class="fa-solid fa-database text-sky-400"></i> Enterprise Database Synchronization Engine
-                        </h3>
-                        <div class="bg-slate-900/50 border border-slate-700 p-5 rounded-lg text-slate-300 leading-relaxed">
-                            <p class="mb-3"><strong>Implementation Scope:</strong> Modernized SQL database maintenance through highly reliable multi-database synchronization mechanisms.</p>
-                            <ul class="list-none space-y-2">
-                                <li><span class="text-purple-400">>></span> <strong>Execution:</strong> Designed robust automation pipelines connecting complex, independent schemas, ensuring exact alignment between distinct Police and Internal Affairs (IA) database architectures.</li>
-                                <li><span class="text-purple-400">>></span> <strong>Outcome:</strong> Minimized manual intervention during data ingestion and differential backups, guaranteeing absolute data integrity across critical public safety infrastructure.</li>
-                            </ul>
-                        </div>
-                    </div>
-
                 </div>
+
+                <!-- Entry 2 -->
+                <div class="glass-panel p-6 md:p-8 rounded-xl relative overflow-hidden group fade-up delay-3">
+                    <div class="absolute left-0 top-0 w-1 h-full bg-trackRed group-hover:w-2 transition-all"></div>
+                    <div class="flex items-start gap-4">
+                        <div class="mt-1 bg-slate-900 border border-slate-700 p-2 rounded text-trackRed">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 font-mono">Remote Server Orchestration & Payload Cleanup</h3>
+                            <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+                                Developed and refined automated PowerShell scripts to manage fleet-wide server operations, WinRM connections, and maintenance routines for distributed US-based customer environments.
+                            </p>
+                            <div class="bg-black/50 p-4 rounded border border-slate-800 font-mono text-xs text-slate-400">
+                                <span class="text-trackRed">></span> <span class="text-white">Execution Parameters:</span> Engineered comprehensive deployment scripts pushing zero-touch updates across active server instances and handling complex IIS binding management.<br><br>
+                                <span class="text-neonCyan">></span> <span class="text-white">System Output:</span> Implemented strict automation protocols for dynamically clearing temporary payload files post-deployment, immediately mitigating storage bloat and auditing network shares to maintain compliance.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entry 3 -->
+                <div class="glass-panel p-6 md:p-8 rounded-xl relative overflow-hidden group fade-up delay-4">
+                    <div class="absolute left-0 top-0 w-1 h-full bg-orange-500 group-hover:w-2 transition-all"></div>
+                    <div class="flex items-start gap-4">
+                        <div class="mt-1 bg-slate-900 border border-slate-700 p-2 rounded text-orange-500">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 font-mono">Enterprise Database Synchronization Engine</h3>
+                            <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+                                Modernized SQL database maintenance through highly reliable multi-database synchronization mechanisms for critical law enforcement data structures.
+                            </p>
+                            <div class="bg-black/50 p-4 rounded border border-slate-800 font-mono text-xs text-slate-400">
+                                <span class="text-trackRed">></span> <span class="text-white">Execution Parameters:</span> Designed robust automation pipelines bridging complex, independent schemas between distinct Police and Internal Affairs (IA) database architectures.<br><br>
+                                <span class="text-neonCyan">></span> <span class="text-white">System Output:</span> Minimized manual intervention during data ingestion and differential backups, guaranteeing absolute data integrity and synchronization across the public safety infrastructure.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-slate-800/50 bg-black/60 backdrop-blur-md py-6 text-center text-xs text-slate-500 font-mono">
+        <p>SYSTEM ENGINEERED BY GOBINATH RAMAKRISHNAN &bull; VER 2.0</p>
+    </footer>
 
 </body>
 </html>
