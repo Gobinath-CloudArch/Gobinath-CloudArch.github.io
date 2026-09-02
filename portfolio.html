@@ -283,7 +283,7 @@
             <div id="orchestratorBox" class="relative w-full rounded-xl overflow-hidden border border-slate-800 bg-slate-950 aspect-video group shadow-2xl">
               
               <!-- Slide 1: Monitor -->
-              <div class="orchestratorSlide fade w-full h-full relative">
+              <div class="orchestratorSlide fade w-full h-full relative block">
                 <img src="monitor.jpg" class="w-full h-full object-cover opacity-85" alt="Phoenix Monitor Telemetry" onerror="this.src='https://placehold.co/800x450/0f172a/00ffcc?text=Phoenix+Monitor'">
                 <div class="absolute bottom-0 w-full bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pt-8 pb-3 text-center text-xs font-mono text-cyan-300 border-t border-cyan-500/20">
                   &gt; Phoenix Monitor: Real-Time Hardware & Telemetry
@@ -535,70 +535,69 @@
 
   <!-- Scripts -->
   <script>
-    // 1. Orchestrator Slider (Autoplay + Pause-on-Hover)
-    let activeIndex = 1;
-    let slideTimer = null;
-    const intervalDelay = 3500; // Time between slides in ms
+    // 1. Bulletproof Orchestrator Slider (Autoplay + Pause-on-Hover)
+    let currentSlide = 0;
+    let slides = document.querySelectorAll(".orchestratorSlide");
+    let slideInterval;
 
-    // Initialize the slider when the DOM loads
-    document.addEventListener("DOMContentLoaded", () => {
-      displaySlide(activeIndex);
-      startCarousel();
-    });
+    function initSlider() {
+      if(slides.length === 0) return;
+      showSlide(currentSlide);
+      startAutoSlide();
 
-    // Function to manually shift slides
-    function shiftSlide(n) {
-      activeIndex += n;
-      displaySlide(activeIndex);
-      resetCarousel();
-    }
-
-    // Function to handle the display logic
-    function displaySlide(n) {
-      const slides = document.getElementsByClassName("orchestratorSlide");
-      if (slides.length === 0) return;
-      
-      // Wrap around logic
-      if (n > slides.length) activeIndex = 1;
-      if (n < 1) activeIndex = slides.length;
-      
-      // Hide all slides
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].classList.add("hidden");
-        slides[i].classList.remove("block");
-      }
-      
-      // Show the active slide
-      slides[activeIndex - 1].classList.remove("hidden");
-      slides[activeIndex - 1].classList.add("block");
-    }
-
-    // Timer functions for auto-slide
-    function startCarousel() {
-      if (!slideTimer) {
-        slideTimer = setInterval(() => {
-          activeIndex++;
-          displaySlide(activeIndex);
-        }, intervalDelay);
+      const sliderBox = document.getElementById("orchestratorBox");
+      if(sliderBox) {
+        sliderBox.addEventListener("mouseenter", stopAutoSlide);
+        sliderBox.addEventListener("mouseleave", startAutoSlide);
       }
     }
 
-    function stopCarousel() {
-      clearInterval(slideTimer);
-      slideTimer = null;
+    function showSlide(index) {
+      // Hide all
+      slides.forEach(slide => {
+        slide.classList.add("hidden");
+        slide.classList.remove("block");
+      });
+      
+      // Boundary checks
+      if (index >= slides.length) currentSlide = 0;
+      if (index < 0) currentSlide = slides.length - 1;
+      
+      // Show target
+      slides[currentSlide].classList.remove("hidden");
+      slides[currentSlide].classList.add("block");
     }
 
-    function resetCarousel() {
-      stopCarousel();
-      startCarousel();
+    function nextSlide() {
+      currentSlide++;
+      showSlide(currentSlide);
     }
 
-    // Pause on hover functionality
-    const carouselBox = document.getElementById("orchestratorBox");
-    if (carouselBox) {
-      carouselBox.addEventListener("mouseenter", stopCarousel);
-      carouselBox.addEventListener("mouseleave", startCarousel);
+    function prevSlide() {
+      currentSlide--;
+      showSlide(currentSlide);
     }
+
+    function shiftSlide(direction) {
+      stopAutoSlide();
+      if(direction > 0) nextSlide();
+      else prevSlide();
+      startAutoSlide();
+    }
+
+    function startAutoSlide() {
+      if(!slideInterval) {
+        slideInterval = setInterval(nextSlide, 3500); // 3.5 seconds
+      }
+    }
+
+    function stopAutoSlide() {
+      clearInterval(slideInterval);
+      slideInterval = null;
+    }
+
+    // Initialize immediately
+    initSlider();
 
     // 2. Interactive CLI Console
     const cliInput = document.getElementById("cliInput");
