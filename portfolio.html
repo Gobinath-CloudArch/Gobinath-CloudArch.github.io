@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gobinath Ramakrishnan | System & Cloud Engineer[cite: 1]</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              azure: '#0078D4',
+              accent: '#38bdf8',
+              surface: '#0f172a',
+              card: '#1e293b',
+              border: '#334155',
+              cyan: '#00ffcc'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+    }
+    .glow { animation: pulseGlow 4s infinite; }
+    html { scroll-behavior: smooth; }
+    .fade { animation: fadeIn 0.4s ease-in-out; }
+    @keyframes fadeIn {
+      from { opacity: 0.4; transform: scale(0.99); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #020617; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-sky-500 selection:text-white">
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2 font-mono text-sky-400 font-bold tracking-wider">
+        <i class="fa-solid fa-terminal"></i>
+        <span>gobinath@azure:~$</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-sky-400 transition">About</a>
+        <a href="#certifications" class="hover:text-sky-400 transition">Credentials</a>
+        <a href="#projects" class="hover:text-sky-400 transition">Framework</a>
+        <a href="#experience" class="hover:text-sky-400 transition">Experience</a>
+        <a href="#skills" class="hover:text-sky-400 transition">Tech Stack</a>
+        <a href="mailto:gobiramakrishnan@yahoo.com" class="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-slate-950 font-semibold rounded-md transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="about" class="relative pt-20 pb-12 px-6 overflow-hidden">
+    <div class="absolute inset-0 -z-10 flex items-center justify-center">
+      <div class="w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-3xl glow"></div>
+    </div>
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-xs font-mono mb-6">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        System/Platform Engineer | Enterprise Infrastructure[cite: 1]
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6">
+        Architecting Reliable, <br class="hidden sm:inline" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600">Zero-Downtime IT Systems</span>
+      </h1>
+      <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mb-8">
+        System/Platform Engineer with 12+ years of experience in IT Infrastructure, server installation, cloud platforms, and application hosting[cite: 1]. Proven track record executing system upgrades and automating deployments across Microsoft Azure and VMware environments[cite: 1].
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="#projects" class="flex items-center gap-2 px-5 py-3 rounded-lg bg-sky-500 hover:bg-sky-600 text-slate-950 font-bold transition">
+          <i class="fa-solid fa-cube text-slate-950"></i>
+          View Automation Framework
+        </a>
+        <a href="resume.pdf" download class="flex items-center gap-2 px-5 py-3 rounded-lg border border-slate-700 bg-slate-900/60 hover:border-slate-500 text-slate-200 transition">
+          <i class="fa-solid fa-cloud-arrow-down text-sky-400 text-lg"></i>
+          Download Resume
+        </a>
+        <a href="https://www.linkedin.com/in/gobinath-ramakrishnan-391127169/" target="_blank" class="flex items-center gap-2 px-5 py-3 rounded-lg border border-slate-700 bg-slate-900/60 hover:border-slate-500 text-slate-200 transition">
+          <i class="fa-brands fa-linkedin text-sky-400 text-lg"></i>
+          LinkedIn[cite: 1]
+        </a>
+      </div>
+
+      <!-- Quick Stats Bar -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 text-left">
+        <div class="p-4 rounded-xl border border-slate-800 bg-slate-900/40">
+          <p class="text-3xl font-extrabold text-sky-400">12+</p>
+          <p class="text-xs text-slate-400 mt-1 uppercase font-mono tracking-wide">Years Experience[cite: 1]</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-slate-900/40">
+          <p class="text-3xl font-extrabold text-sky-400">4+</p>
+          <p class="text-xs text-slate-400 mt-1 uppercase font-mono tracking-wide">Enterprise Roles[cite: 1]</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-slate-900/40">
+          <p class="text-3xl font-extrabold text-sky-400">3</p>
+          <p class="text-xs text-slate-400 mt-1 uppercase font-mono tracking-wide">Cloud Certifications[cite: 1]</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-slate-900/40">
+          <p class="text-3xl font-extrabold text-sky-400">100%</p>
+          <p class="text-xs text-slate-400 mt-1 uppercase font-mono tracking-wide">ITIL Compliance[cite: 1]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live SRE Telemetry Metrics Bar -->
+  <section class="max-w-6xl mx-auto px-6 pb-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 font-mono text-xs">
+      <div class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/40">
+        <div class="flex items-center justify-between text-slate-500 mb-1">
+          <span>SERVER UPTIME</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+        </div>
+        <div class="text-lg font-bold text-emerald-400">99.9%</div>
+        <span class="text-[10px] text-slate-500">Enterprise VMware & Azure</span>
+      </div>
+      <div class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/40">
+        <div class="flex items-center justify-between text-slate-500 mb-1">
+          <span>APP DEPLOYMENT</span>
+          <i class="fa-solid fa-code-merge text-slate-600 text-xs"></i>
+        </div>
+        <div class="text-lg font-bold text-sky-400">Automated</div>
+        <span class="text-[10px] text-slate-500">IIS & XML Packages[cite: 1]</span>
+      </div>
+      <div class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/40">
+        <div class="flex items-center justify-between text-slate-500 mb-1">
+          <span>DB SYNC STATUS</span>
+          <i class="fa-solid fa-database text-slate-600 text-xs"></i>
+        </div>
+        <div class="text-lg font-bold text-white">Healthy</div>
+        <span class="text-[10px] text-slate-500">SQL Backups Verified[cite: 1]</span>
+      </div>
+      <div class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/40">
+        <div class="flex items-center justify-between text-slate-500 mb-1">
+          <span>AD REPLICATION</span>
+          <span class="text-emerald-400 text-[10px]">Active</span>
+        </div>
+        <div class="text-lg font-bold text-emerald-400">Syncing</div>
+        <span class="text-[10px] text-slate-500">Multi-Site Infrastructure</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expert Credentials & Certifications -->
+  <section id="certifications" class="py-16 px-6 border-t border-slate-900 bg-slate-950/60">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center gap-3 mb-8">
+        <i class="fa-solid fa-certificate text-sky-400 text-2xl"></i>
+        <h2 class="text-2xl font-bold">Expert Credentials & Certifications</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- AZ-305 -->
+        <div class="p-5 rounded-2xl border border-sky-500/30 bg-gradient-to-b from-sky-950/40 to-slate-900/60 hover:border-sky-400/60 transition group">
+          <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-xl mb-4 group-hover:scale-105 transition">
+            <i class="fa-brands fa-microsoft"></i>
+          </div>
+          <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400 font-bold bg-sky-950/80 px-2 py-0.5 rounded border border-sky-500/30">Microsoft Expert</span>
+          <h3 class="font-bold text-white mt-2.5 text-base leading-snug">Azure Solutions Architect[cite: 1]</h3>
+          <p class="text-xs font-mono text-slate-400 mt-1.5 flex items-center gap-1.5">
+            <i class="fa-solid fa-check text-[11px] text-sky-400"></i> AZ-305
+          </p>
+        </div>
+
+        <!-- AZ-104 -->
+        <div class="p-5 rounded-2xl border border-cyan-500/30 bg-gradient-to-b from-cyan-950/40 to-slate-900/60 hover:border-cyan-400/60 transition group">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl mb-4 group-hover:scale-105 transition">
+            <i class="fa-brands fa-microsoft"></i>
+          </div>
+          <span class="text-[10px] font-mono uppercase tracking-widest text-cyan-400 font-bold bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-500/30">Microsoft Associate</span>
+          <h3 class="font-bold text-white mt-2.5 text-base leading-snug">Azure Administrator[cite: 1]</h3>
+          <p class="text-xs font-mono text-slate-400 mt-1.5 flex items-center gap-1.5">
+            <i class="fa-solid fa-check text-[11px] text-cyan-400"></i> AZ-104
+          </p>
+        </div>
+
+        <!-- AWS Cloud Quest -->
+        <div class="p-5 rounded-2xl border border-orange-500/30 bg-gradient-to-b from-orange-950/40 to-slate-900/60 hover:border-orange-400/60 transition group">
+          <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400 text-xl mb-4 group-hover:scale-105 transition">
+            <i class="fa-brands fa-aws"></i>
+          </div>
+          <span class="text-[10px] font-mono uppercase tracking-widest text-orange-400 font-bold bg-orange-950/80 px-2 py-0.5 rounded border border-orange-500/30">AWS Foundations</span>
+          <h3 class="font-bold text-white mt-2.5 text-base leading-snug">Cloud Quest Batch[cite: 1]</h3>
+          <p class="text-xs font-mono text-slate-400 mt-1.5 flex items-center gap-1.5">
+            <i class="fa-solid fa-check text-[11px] text-orange-400"></i> Cloud Practitioner
+          </p>
+        </div>
+
+        <!-- BCA Degree -->
+        <div class="p-5 rounded-2xl border border-emerald-500/30 bg-gradient-to-b from-emerald-950/40 to-slate-900/60 hover:border-emerald-400/60 transition group">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl mb-4 group-hover:scale-105 transition">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">Degree</span>
+          <h3 class="font-bold text-white mt-2.5 text-base leading-snug">Bachelor of Computer Applications[cite: 1]</h3>
+          <p class="text-xs font-mono text-slate-400 mt-1.5 flex items-center gap-1.5">
+            <i class="fa-solid fa-check text-[11px] text-emerald-400"></i> TNOU (2020)
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Automation Framework (Phoenix Suite Showcase) -->
+  <section id="projects" class="py-16 px-6 border-t border-slate-900 bg-slate-950/80">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center gap-3 mb-8">
+        <i class="fa-solid fa-cube text-sky-400 text-2xl"></i>
+        <h2 class="text-2xl font-bold">Featured Automation Framework</h2>
+      </div>
+
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-6 sm:p-10 relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl glow pointer-events-none"></div>
+
+        <div class="flex flex-col lg:flex-row gap-10 items-center">
+          <!-- Project Summary -->
+          <div class="flex-1 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 text-xs font-mono uppercase tracking-widest text-cyan-400 bg-cyan-950/40 border border-cyan-500/30 rounded-full">
+              Enterprise Automation Framework
+            </div>
+            
+            <h3 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              Phoenix Suite: <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">Next-Gen Orchestrator</span>
+            </h3>
+
+            <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+              A multi-threaded management ecosystem delivering continuous telemetry, automated schema synchronizations, and zero-touch deployment pipelines for enterprise environments.
+            </p>
+
+            <!-- Metrics -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div class="p-3.5 rounded-xl border border-slate-800 bg-slate-950/60 text-center">
+                <p class="text-[11px] font-mono text-slate-500 uppercase tracking-wider mb-1">Execution Engine</p>
+                <p class="font-bold text-white text-sm">Multi-Threaded UI</p>
+              </div>
+              <div class="p-3.5 rounded-xl border border-slate-800 bg-slate-950/60 text-center">
+                <p class="text-[11px] font-mono text-slate-500 uppercase tracking-wider mb-1">Architecture</p>
+                <p class="font-bold text-white text-sm">Glass UI & WinRM</p>
+              </div>
+              <div class="p-3.5 rounded-xl border border-slate-800 bg-slate-950/60 text-center">
+                <p class="text-[11px] font-mono text-slate-500 uppercase tracking-wider mb-1">Target System</p>
+                <p class="font-bold text-white text-sm">Enterprise SQL & App</p>
+              </div>
+            </div>
+
+            <!-- Download CTA -->
+            <div class="pt-3">
+              <a href="https://github.com/Gobinath-CloudArch/MyScripts/raw/main/InstallationMasterToolv8.52_20260830_0203.zip" class="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-sky-400 to-cyan-400 hover:from-sky-500 hover:to-cyan-500 text-slate-950 font-bold rounded-xl transition shadow-lg shadow-cyan-500/10">
+                <i class="fas fa-download"></i>
+                Download Master Tool
+              </a>
+              <p class="text-slate-500 font-mono text-xs mt-3 flex items-center gap-2">
+                <i class="fas fa-code-branch text-sky-400"></i> Build v8.52 &bull; Enterprise-Ready Deployment Artifact
+              </p>
+            </div>
+          </div>
+
+          <!-- Showcase Slider (Autoplay + Pause-on-Hover) -->
+          <div class="w-full lg:w-[500px]">
+            <div id="orchestratorBox" class="relative w-full rounded-xl overflow-hidden border border-slate-800 bg-slate-950 aspect-video group shadow-2xl">
+              
+              <!-- Slide 1: Monitor -->
+              <div class="orchestratorSlide fade w-full h-full relative">
+                <img src="monitor.jpg" class="w-full h-full object-cover opacity-85" alt="Phoenix Monitor Telemetry" onerror="this.src='https://placehold.co/800x450/0f172a/00ffcc?text=Phoenix+Monitor'">
+                <div class="absolute bottom-0 w-full bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pt-8 pb-3 text-center text-xs font-mono text-cyan-300 border-t border-cyan-500/20">
+                  &gt; Phoenix Monitor: Real-Time Hardware & Telemetry
+                </div>
+              </div>
+
+              <!-- Slide 2: Dashboard -->
+              <div class="orchestratorSlide fade w-full h-full relative hidden">
+                <img src="dashboard.png" class="w-full h-full object-cover opacity-85" alt="Phoenix Master Dashboard" onerror="this.src='https://placehold.co/800x450/0f172a/38bdf8?text=Master+Dashboard'">
+                <div class="absolute bottom-0 w-full bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pt-8 pb-3 text-center text-xs font-mono text-sky-400 border-t border-sky-500/20">
+                  &gt; Master Installation Dashboard: Pipeline Controller
+                </div>
+              </div>
+
+              <!-- Slide 3: DB Sync -->
+              <div class="orchestratorSlide fade w-full h-full relative hidden">
+                <img src="sync-main.png" class="w-full h-full object-cover opacity-85" alt="DB Sync Utility" onerror="this.src='https://placehold.co/800x450/0f172a/a855f7?text=DB+Sync+Utility'">
+                <div class="absolute bottom-0 w-full bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent pt-8 pb-3 text-center text-xs font-mono text-purple-400 border-t border-purple-500/20">
+                  &gt; DB Sync Dashboard: Multi-Database Synchronizer
+                </div>
+              </div>
+
+              <!-- Slider Navigation Buttons -->
+              <button onclick="shiftSlide(-1)" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-slate-900/80 hover:bg-sky-500 text-slate-300 hover:text-slate-950 rounded-lg flex items-center justify-center transition border border-slate-700 opacity-0 group-hover:opacity-100 backdrop-blur-sm z-20">
+                <i class="fas fa-chevron-left text-xs"></i>
+              </button>
+              <button onclick="shiftSlide(1)" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-slate-900/80 hover:bg-sky-500 text-slate-300 hover:text-slate-950 rounded-lg flex items-center justify-center transition border border-slate-700 opacity-0 group-hover:opacity-100 backdrop-blur-sm z-20">
+                <i class="fas fa-chevron-right text-xs"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Architecture Flowchart -->
+  <section class="py-12 px-6 border-t border-slate-900 bg-slate-950/50">
+    <div class="max-w-6xl mx-auto">
+      <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-6 font-mono text-xs text-slate-300">
+        <div class="text-sky-400 font-bold mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-diagram-project"></i> Deployment Pipeline Architecture
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-center">
+          <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+            <span class="text-sky-400 block font-bold text-sm mb-0.5">1. Package Build</span>
+            <span class="text-[11px] text-slate-500">Software Verified for Deploy[cite: 1]</span>
+          </div>
+          <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+            <span class="text-emerald-400 block font-bold text-sm mb-0.5">2. Config Update</span>
+            <span class="text-[11px] text-slate-500">Exclude PhoenixIA (Step 2 & 4)</span>
+          </div>
+          <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+            <span class="text-cyan-400 block font-bold text-sm mb-0.5">3. DB Sync</span>
+            <span class="text-[11px] text-slate-500">SQL Backups & Synchronization[cite: 1]</span>
+          </div>
+          <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+            <span class="text-purple-400 block font-bold text-sm mb-0.5">4. IIS Deploy</span>
+            <span class="text-[11px] text-slate-500">Manual Hotfixes Applied[cite: 1]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Experience Timeline -->
+  <section id="experience" class="py-16 px-6 border-t border-slate-900 bg-slate-950/60">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center gap-3 mb-10">
+        <i class="fa-solid fa-briefcase text-sky-400 text-2xl"></i>
+        <h2 class="text-2xl font-bold">Engineering Track Record</h2>
+      </div>
+
+      <div class="space-y-8 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-slate-800">
+        
+        <!-- Job 1 -->
+        <div class="relative pl-10">
+          <div class="absolute left-1.5 top-1.5 w-4 h-4 rounded-full border-2 border-sky-500 bg-slate-950"></div>
+          <div class="p-6 rounded-xl border border-slate-800 bg-slate-900/40">
+            <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+              <h3 class="text-xl font-bold text-white">Installation Engineer[cite: 1]</h3>
+              <span class="text-xs font-mono text-sky-400 bg-sky-950/60 px-2.5 py-1 rounded">June 2024 &ndash; Present[cite: 1]</span>
+            </div>
+            <p class="text-sm font-medium text-slate-400 mb-4">Chenosa Technology Solutions Pvt Ltd[cite: 1]</p>
+            <ul class="space-y-2.5 text-sm text-slate-300">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-box text-sky-400 text-xs mt-1"></i>
+                <span>Built and verified software packages for deployment.[cite: 1]</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-cloud text-sky-400 text-xs mt-1"></i>
+                <span>Managed Azure-based cloud platforms and resources.[cite: 1]</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-database text-sky-400 text-xs mt-1"></i>
+                <span>Performed SQL backups and synchronization fixes.[cite: 1]</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-server text-sky-400 text-xs mt-1"></i>
+                <span>Applied manual hotfixes and supported application deployment via IIS.[cite: 1]</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="relative pl-10">
+          <div class="absolute left-1.5 top-1.5 w-4 h-4 rounded-full border-2 border-slate-600 bg-slate-950"></div>
+          <div class="p-6 rounded-xl border border-slate-800 bg-slate-900/40">
+            <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+              <h3 class="text-xl font-bold text-white">Senior Support Administrator[cite: 1]</h3>
+              <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2.5 py-1 rounded">Dec 2017 &ndash; May 2024[cite: 1]</span>
+            </div>
+            <p class="text-sm font-medium text-slate-400 mb-4">Sungwoo Stamping Pvt Ltd[cite: 1]</p>
+            <ul class="space-y-2 text-sm text-slate-300">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-network-wired text-slate-400 text-xs mt-1"></i>
+                <span>Administered AD, DNS, DHCP, and file/print servers for enterprise infrastructure.[cite: 1]</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-shield text-slate-400 text-xs mt-1"></i>
+                <span>Managed patching, antivirus deployment, and Microsoft 365 Outlook configurations.[cite: 1]</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-phone text-slate-400 text-xs mt-1"></i>
+                <span>Configured routers, switches, deployed IP phones, and managed VoIP infrastructure.[cite: 1]</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Job 3 -->
+        <div class="relative pl-10">
+          <div class="absolute left-1.5 top-1.5 w-4 h-4 rounded-full border-2 border-slate-600 bg-slate-950"></div>
+          <div class="p-6 rounded-xl border border-slate-800 bg-slate-900/40">
+            <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+              <h3 class="text-xl font-bold text-white">System Administrator[cite: 1]</h3>
+              <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2.5 py-1 rounded">Nov 2013 &ndash; Nov 2017[cite: 1]</span>
+            </div>
+            <p class="text-sm font-medium text-slate-400 mb-4">SSS Solutions Pvt Ltd (Client: Alagendran Automobiles)[cite: 1]</p>
+            <ul class="space-y-2 text-sm text-slate-300">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-desktop text-slate-400 text-xs mt-1"></i>
+                <span>Provided remote desktop support for over 150 systems.[cite: 1]</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-users-gear text-slate-400 text-xs mt-1"></i>
+                <span>Managed AD user setup, system patching, and software rollout.[cite: 1]</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Competencies Grid -->
+  <section id="skills" class="py-16 px-6 border-t border-slate-900">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center gap-3 mb-8">
+        <i class="fa-solid fa-layer-group text-sky-400 text-2xl"></i>
+        <h2 class="text-2xl font-bold">Skills & Architecture Stack</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/30">
+          <h3 class="font-mono text-sm uppercase tracking-wide text-sky-400 font-bold mb-3">Cloud & Identity</h3>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">Microsoft Azure[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">AWS Cloud Quest[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">Azure AD[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">Active Directory (GPO/OU)[cite: 1]</span>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/30">
+          <h3 class="font-mono text-sm uppercase tracking-wide text-sky-400 font-bold mb-3">Virtualization & OS</h3>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">VMware ESXi 6.5/7.0[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">Hyper-V[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">Windows Server[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">Linux (Ubuntu/CentOS)[cite: 1]</span>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/30">
+          <h3 class="font-mono text-sm uppercase tracking-wide text-sky-400 font-bold mb-3">Data & Scripting</h3>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">MS SQL Server[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">PowerShell[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">Azure CLI[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">Git[cite: 1]</span>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/30">
+          <h3 class="font-mono text-sm uppercase tracking-wide text-sky-400 font-bold mb-3">Networking & Hosting</h3>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">LAN/WAN & Routing[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">DNS & DHCP[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">IIS Configuration[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">SSL Certificates[cite: 1]</span>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/30">
+          <h3 class="font-mono text-sm uppercase tracking-wide text-sky-400 font-bold mb-3">Security & Management</h3>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">K7 Endpoint Security[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">SCCM / System Center[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">ServiceNow / Jira[cite: 1]</span>
+            <span class="px-2.5 py-1 bg-slate-800 rounded text-xs">ITIL Process[cite: 1]</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Terminal CLI Component -->
+  <section class="py-12 px-6 border-t border-slate-900 bg-slate-950/80">
+    <div class="max-w-4xl mx-auto">
+      <div class="rounded-xl border border-slate-800 bg-slate-950 p-4 font-mono text-xs shadow-2xl">
+        <div class="flex items-center gap-2 mb-2 pb-2 border-b border-slate-800 text-slate-500">
+          <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <span class="text-[11px] ml-2 text-slate-400">Interactive Cloud Console &bull; Type: help, certs, skills, contact, clear</span>
+        </div>
+        <div id="cliOutput" class="space-y-1 text-slate-300 min-h-[70px] max-h-[160px] overflow-y-auto">
+          <div class="text-slate-500">Type 'help' to inspect engineering credentials and profile metadata.</div>
+        </div>
+        <div class="flex items-center gap-2 mt-2 pt-2 border-t border-slate-800">
+          <span class="text-sky-400 font-bold">guest@gobinath:~$</span>
+          <input id="cliInput" type="text" class="bg-transparent text-slate-100 focus:outline-none flex-1 font-mono text-xs" autocomplete="off" placeholder="type a command..." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-900 py-8 px-6 text-center text-xs text-slate-500 font-mono">
+    <div class="flex justify-center items-center gap-6 mb-3 text-slate-400 text-base">
+      <a href="https://www.linkedin.com/in/gobinath-ramakrishnan-391127169/" target="_blank" class="hover:text-sky-400 transition"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="mailto:gobiramakrishnan@yahoo.com" class="hover:text-sky-400 transition"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+    <p>&copy; 2026 Gobinath Ramakrishnan &bull; Hosted on GitHub Pages</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Orchestrator Slider (Autoplay + Pause-on-Hover)
+    let activeIndex = 1;
+    let slideTimer = null;
+    const intervalDelay = 3500;
+
+    displaySlide(activeIndex);
+    startCarousel();
+
+    function shiftSlide(n) {
+      displaySlide(activeIndex += n);
+      resetCarousel();
+    }
+
+    function displaySlide(n) {
+      const slides = document.getElementsByClassName("orchestratorSlide");
+      if (slides.length === 0) return;
+      
+      if (n > slides.length) activeIndex = 1;
+      if (n < 1) activeIndex = slides.length;
+      
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.add("hidden");
+        slides[i].classList.remove("block");
+      }
+      
+      slides[activeIndex - 1].classList.remove("hidden");
+      slides[activeIndex - 1].classList.add("block");
+    }
+
+    function startCarousel() {
+      if (!slideTimer) {
+        slideTimer = setInterval(() => {
+          shiftSlide(1);
+        }, intervalDelay);
+      }
+    }
+
+    function stopCarousel() {
+      clearInterval(slideTimer);
+      slideTimer = null;
+    }
+
+    function resetCarousel() {
+      stopCarousel();
+      startCarousel();
+    }
+
+    const carouselBox = document.getElementById("orchestratorBox");
+    if (carouselBox) {
+      carouselBox.addEventListener("mouseenter", stopCarousel);
+      carouselBox.addEventListener("mouseleave", startCarousel);
+    }
+
+    // Interactive CLI Console
+    const cliInput = document.getElementById("cliInput");
+    const cliOutput = document.getElementById("cliOutput");
+
+    if (cliInput && cliOutput) {
+      cliInput.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+          const cmd = this.value.trim().toLowerCase();
+          this.value = "";
+          let res = "";
+
+          switch(cmd) {
+            case "help":
+              res = "Commands: <span class='text-sky-400'>certs</span>, <span class='text-sky-400'>skills</span>, <span class='text-sky-400'>contact</span>, <span class='text-sky-400'>clear</span>";
+              break;
+            case "certs":
+              res = "AZ-305 (Azure Architect Expert), AZ-104 (Azure Administrator Associate), AWS Cloud Quest Cloud Practitioner, BCA Degree";
+              break;
+            case "skills":
+              res = "Microsoft Azure, VMware ESXi, Active Directory, MS SQL Server, PowerShell, IIS Configuration";
+              break;
+            case "contact":
+              res = "Email: gobiramakrishnan@yahoo.com | LinkedIn: /in/gobinath-ramakrishnan-391127169";
+              break;
+            case "clear":
+              cliOutput.innerHTML = "";
+              return;
+            case "":
+              return;
+            default:
+              res = `bash: command not found: '${cmd}'. Type 'help' for options.`;
+          }
+
+          cliOutput.innerHTML += `<div><span class="text-sky-400 font-bold">guest@gobinath:~$</span> ${cmd}</div><div class="text-slate-400 mb-1">${res}</div>`;
+          cliOutput.scrollTop = cliOutput.scrollHeight;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
