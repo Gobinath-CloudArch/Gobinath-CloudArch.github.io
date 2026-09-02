@@ -1,448 +1,389 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phoenix Ecosystem | Engineering & Automation Portfolio</title>
+    <title>Gobinath Ramakrishnan | Enterprise Cloud Architect</title>
+    <meta name="description" content="System/Platform Engineer with 12+ years of experience in IT Infrastructure, automation, and enterprise cloud architecture.">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        cloudBg: '#090E17',
+                        cloudPanel: '#111827',
+                        cloudBorder: '#1F2937',
+                        accentBlue: '#38BDF8',
+                        accentCyan: '#00F0FF',
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1F2937 1px, transparent 1px), linear-gradient(to bottom, #1F2937 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --bg-deep: #0a0c10;
-            --bg-surface: #11141c;
-            --bg-glass: rgba(22, 27, 38, 0.7);
-            --border-glass: rgba(0, 255, 204, 0.15);
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --accent-cyan: #00ffcc;
-            --accent-glow: rgba(0, 255, 204, 0.35);
-            --accent-purple: #8b5cf6;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-deep);
-            color: var(--text-primary);
-            min-height: 100vh;
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(0, 255, 204, 0.07) 0%, transparent 40%),
-                radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.07) 0%, transparent 40%);
-        }
-
-        /* Ambient subtle grid */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
-            background-size: 40px 40px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(10, 12, 16, 0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-subtle);
-            padding: 16px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .brand-badge {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            color: #000;
-            font-size: 14px;
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .brand-text {
-            font-size: 18px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(to right, #ffffff, var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--accent-cyan);
-            background: rgba(0, 255, 204, 0.08);
-            border: 1px solid rgba(0, 255, 204, 0.2);
-            padding: 6px 14px;
-            border-radius: 100px;
-        }
-
-        .status-dot {
-            width: 7px;
-            height: 7px;
-            background-color: var(--accent-cyan);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-cyan);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.85); }
-        }
-
-        /* Container */
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 24px;
-        }
-
-        /* Hero Header */
-        .hero {
-            text-align: center;
-            margin-bottom: 45px;
-        }
-
-        .hero-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--accent-cyan);
-            background: rgba(0, 255, 204, 0.05);
-            border: 1px solid var(--border-glass);
-            padding: 6px 14px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: clamp(32px, 5vw, 48px);
-            font-weight: 800;
-            letter-spacing: -1px;
-            line-height: 1.15;
-            margin-bottom: 14px;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--accent-cyan) 20%, #ffffff 80%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 16px;
-            color: var(--text-secondary);
-            max-width: 680px;
-            margin: 0 auto;
-        }
-
-        /* Metrics Bar */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-
-        .metric-card {
-            background: var(--bg-glass);
-            border: 1px solid var(--border-subtle);
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #090E17; }
+        ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #38BDF8; }
+        
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
             backdrop-filter: blur(12px);
-            padding: 18px 20px;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            transition: border-color 0.3s;
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        .metric-card:hover {
-            border-color: var(--border-glass);
-        }
-
-        .metric-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-        }
-
-        .metric-value {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        /* Showcase Carousel */
-        .showcase-wrapper {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: 12px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .slideshow-container {
-            position: relative;
-            border-radius: 14px;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .mySlides {
-            display: none;
-        }
-
-        .mySlides img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        /* Slide controls */
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 10px;
-            background: rgba(10, 12, 16, 0.7);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--border-subtle);
-            user-select: none;
-            transition: all 0.2s ease;
-        }
-
-        .prev { left: 16px; }
-        .next { right: 16px; }
-
-        .prev:hover, .next:hover {
-            background: var(--accent-cyan);
-            color: #000;
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .slide-caption {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            color: var(--text-primary);
-            padding: 12px 20px;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(10, 12, 16, 0.95), rgba(10, 12, 16, 0));
-            text-align: center;
-        }
-
-        .fade {
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
+        
+        .fade-in { animation: fadeIn 0.6s ease-out forwards; }
         @keyframes fadeIn {
-            from { opacity: 0.6; transform: scale(0.995); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* Call To Action */
-        .cta-box {
-            text-align: center;
-            background: linear-gradient(180deg, rgba(17, 20, 28, 0.6) 0%, rgba(10, 12, 16, 0.9) 100%);
-            border: 1px solid var(--border-glass);
-            border-radius: 16px;
-            padding: 36px 24px;
-            backdrop-filter: blur(12px);
-        }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, var(--accent-cyan) 0%, #00e6b8 100%);
-            color: #041014;
-            padding: 16px 36px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 15px;
-            border-radius: 10px;
-            letter-spacing: 0.2px;
-            box-shadow: 0 0 25px var(--accent-glow);
-            transition: all 0.25s ease;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 35px rgba(0, 255, 204, 0.55);
-        }
-
-        .download-meta {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 14px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid var(--border-subtle);
-            color: var(--text-muted);
-            font-size: 13px;
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body>
+<body class="bg-cloudBg text-slate-300 font-sans antialiased selection:bg-accentCyan selection:text-cloudBg overflow-x-hidden">
 
-<nav>
-    <a href="#" class="brand">
-        <div class="brand-badge">P</div>
-        <div class="brand-text">Phoenix Suite</div>
-    </a>
-    <div class="nav-status">
-        <div class="status-dot"></div>
-        <span>ENGINE ARMED</span>
-    </div>
-</nav>
+    <!-- Enterprise Grid Background -->
+    <div class="fixed inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-20 pointer-events-none z-0"></div>
+    <div class="fixed inset-0 bg-gradient-to-b from-cloudBg via-transparent to-cloudBg pointer-events-none z-0"></div>
 
-<main class="container">
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-pill">Enterprise Automation Framework</div>
-        <h1>Next-Gen Infrastructure <span>Orchestrator</span></h1>
-        <p>A multi-threaded management ecosystem delivering continuous telemetry, automated schema synchronizations, and zero-touch deployment pipelines.</p>
+    <!-- Executive Navigation -->
+    <header class="fixed top-0 w-full glass-panel z-50 border-b border-cloudBorder">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 bg-gradient-to-br from-accentBlue to-accentCyan rounded-lg flex items-center justify-center text-cloudBg font-bold font-mono group-hover:shadow-[0_0_15px_rgba(0,240,255,0.5)] transition-all">G</div>
+                <span class="text-lg font-bold text-white tracking-tight">Gobinath<span class="text-accentCyan">.</span></span>
+            </a>
+            <nav class="hidden md:flex gap-8 text-xs font-mono font-medium text-slate-400 uppercase tracking-widest">
+                <a href="#engineering" class="hover:text-accentCyan transition">Engineering</a>
+                <a href="#competencies" class="hover:text-accentCyan transition">Skills</a>
+                <a href="#projects" class="hover:text-accentCyan transition">Projects</a>
+                <a href="#experience" class="hover:text-accentCyan transition">Experience</a>
+            </nav>
+            <a href="resume.pdf" download class="hidden md:flex items-center gap-2 px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider text-accentCyan border border-accentCyan/30 rounded hover:bg-accentCyan/10 transition">
+                <i class="fa-solid fa-cloud-arrow-down"></i> Resume.pdf
+            </a>
+        </div>
     </header>
 
-    <!-- Key Metrics Cards -->
-    <div class="metrics-grid">
-        <div class="metric-card">
-            <span class="metric-label">Execution Engine</span>
-            <span class="metric-value">Multi-Threaded UI</span>
-        </div>
-        <div class="metric-card">
-            <span class="metric-label">Architecture</span>
-            <span class="metric-value">Glass UI & WinRM</span>
-        </div>
-        <div class="metric-card">
-            <span class="metric-label">Target System</span>
-            <span class="metric-value">Enterprise SQL & App</span>
-        </div>
-    </div>
+    <main class="relative z-10 pt-32 pb-32 space-y-32">
+        
+        <!-- Hero Command Center -->
+        <section id="hero" class="px-6 max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
+            <div class="flex-1 space-y-8 fade-in">
+                <div class="inline-flex items-center gap-3 px-3 py-1.5 border border-accentCyan/30 bg-accentCyan/5 rounded-full">
+                    <div class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accentCyan opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accentCyan"></span>
+                    </div>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-widest text-accentCyan">Infrastructure Master Node Online</span>
+                </div>
+                
+                <div class="space-y-4">
+                    <h1 class="text-5xl sm:text-7xl font-extrabold text-white tracking-tight leading-[1.1]">
+                        Gobinath <br> Ramakrishnan
+                    </h1>
+                    <h2 class="text-xl sm:text-2xl font-medium text-slate-400">
+                        Senior Platform Engineer <span class="text-accentBlue">&</span> Cloud Architect
+                    </h2>
+                </div>
 
-    <!-- Showcase Slideshow -->
-    <section class="showcase-wrapper">
-        <div class="slideshow-container">
-            <div class="mySlides fade">
-                <img src="monitor.jpg" alt="Phoenix Monitor Telemetry">
-                <div class="slide-caption">Phoenix Monitor: Real-Time Hardware & Resource Telemetry</div>
+                <p class="text-slate-400 max-w-xl text-lg leading-relaxed">
+                    Orchestrating highly available IT infrastructure, executing complex system upgrades, and engineering zero-touch automation pipelines for enterprise-scale environments.
+                </p>
+
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="#engineering" class="px-6 py-3.5 bg-white text-cloudBg font-bold rounded-lg hover:bg-slate-200 transition shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                        Explore Architecture
+                    </a>
+                    <a href="resume.pdf" download class="px-6 py-3.5 bg-cloudPanel border border-cloudBorder text-white font-medium rounded-lg hover:border-accentCyan/50 transition flex items-center gap-2 group">
+                        <i class="fa-solid fa-download text-accentCyan group-hover:scale-110 transition"></i> Fetch Credentials
+                    </a>
+                </div>
             </div>
-
-            <div class="mySlides fade">
-                <img src="dashboard.png" alt="Phoenix Master Dashboard">
-                <div class="slide-caption">Master Installation Dashboard: Centralized Pipeline Controller</div>
+            
+            <!-- Terminal Output -->
+            <div class="flex-1 w-full max-w-lg lg:max-w-full fade-in" style="animation-delay: 0.2s;">
+                <div class="rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-cloudBorder bg-[#0D1117]">
+                    <div class="bg-[#161B22] px-4 py-3 flex items-center justify-between border-b border-cloudBorder">
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+                            <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                            <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+                        </div>
+                        <div class="text-[11px] text-slate-500 font-mono">root@enterprise-sys:~</div>
+                    </div>
+                    <div class="p-6 font-mono text-sm text-slate-300 space-y-3">
+                        <div class="flex gap-2">
+                            <span class="text-accentCyan">❯</span>
+                            <span class="text-white">sysctl get-uptime</span>
+                        </div>
+                        <div class="text-slate-400 pl-4">12+ Years Enterprise IT Operations</div>
+                        
+                        <div class="flex gap-2 pt-2">
+                            <span class="text-accentCyan">❯</span>
+                            <span class="text-white">az network vnet show --name CoreNetwork</span>
+                        </div>
+                        <div class="text-slate-400 pl-4">Location: Chennai, Tamil Nadu, India</div>
+                        <div class="text-slate-400 pl-4">Status: Active & Highly Available</div>
+                        
+                        <div class="flex gap-2 pt-2 items-center">
+                            <span class="text-accentCyan">❯</span>
+                            <span class="w-2 h-4 bg-accentCyan animate-pulse"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="mySlides fade">
-                <img src="sync-main.png" alt="DB Sync Utility">
-                <div class="slide-caption">DB Sync Dashboard: Multi-Database Synchronizer</div>
+        <!-- Advanced Engineering & Automation (Generated from Data) -->
+        <section id="engineering" class="px-6 max-w-7xl mx-auto">
+            <div class="mb-12">
+                <div class="text-accentCyan font-mono text-sm uppercase tracking-widest mb-2">Systems & Automation</div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Advanced Engineering Capabilities</h2>
             </div>
+            
+            <!-- Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Automation Node -->
+                <div class="glass-panel p-8 rounded-2xl lg:col-span-2 group hover:border-accentCyan/30 transition-all duration-300">
+                    <i class="fa-solid fa-gears text-2xl text-accentBlue mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">PowerShell & Deployment Orchestration</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Develop and refine complex scripts to aggressively automate remote server patching, IIS binding management, and network share auditing across complex, US-based customer environments. Engineered custom tools for zero-touch updates and clearing temporary payload files across active server instances.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">PowerShell</span>
+                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">WinRM</span>
+                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">IIS Bindings</span>
+                    </div>
+                </div>
 
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-    </section>
+                <!-- Data & SQL Node -->
+                <div class="glass-panel p-8 rounded-2xl group hover:border-accentCyan/30 transition-all duration-300">
+                    <i class="fa-solid fa-database text-2xl text-accentBlue mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">Database Synchronization</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Architect differential backup jobs and advanced data synchronization workflows for mission-critical setups, specifically handling complex multi-database schemas (e.g., configurations bridging independent Police and IA databases).
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">MS SQL</span>
+                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">Data Sync</span>
+                    </div>
+                </div>
 
-    <!-- Download Section -->
-    <section class="cta-box">
-        <a href="https://github.com/gobikrish90/MyScripts/raw/main/InstallationMasterToolv8.52_20260830_0203.zip" class="download-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            Download Installation Master Tool
-        </a>
-        <p class="download-meta">Deployment Artifact &bull; Build v8.52 &bull; Enterprise Ready</p>
-    </section>
-</main>
+                <!-- Logic Node -->
+                <div class="glass-panel p-8 rounded-2xl group hover:border-accentCyan/30 transition-all duration-300">
+                    <i class="fa-solid fa-code-merge text-2xl text-accentBlue mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">Precision XML Deployment Logic</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Engineer precision deployment logic with strict conditional validation. Designed multi-step XML update processes capable of explicitly bypassing target modules (e.g., dynamically excluding 'PhoenixIA' configurations during specific Step 2 and Step 4 deployment phases).
+                    </p>
+                </div>
 
-<footer>
-    &copy; 2026 Phoenix Ecosystem. All rights reserved.
-</footer>
+                <!-- DevOps Node -->
+                <div class="glass-panel p-8 rounded-2xl lg:col-span-2 group hover:border-accentCyan/30 transition-all duration-300">
+                    <i class="fa-brands fa-docker text-2xl text-accentBlue mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">Modern Cloud-Native Scaling</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Continuously expanding hybrid infrastructure architectures by integrating structured learning paths and deployments involving Jenkins CI/CD pipelines, Docker containerization, Kubernetes orchestration, and Terraform Infrastructure-as-Code (IaC).
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">Jenkins</span>
+                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">Docker</span>
+                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">Kubernetes</span>
+                        <span class="px-2.5 py-1 rounded bg-cloudBg border border-cloudBorder text-[11px] font-mono text-slate-300">Terraform</span>
+                    </div>
+                </div>
 
-<script>
-    let slideIndex = 1;
-    showSlides(slideIndex);
+            </div>
+        </section>
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
+        <!-- Featured Project: Phoenix Ecosystem -->
+        <section id="projects" class="px-6 max-w-7xl mx-auto">
+            <div class="glass-panel border-l-4 border-l-accentCyan rounded-r-2xl p-8 lg:p-12 shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-[150px] -right-[150px] w-[400px] h-[400px] bg-accentCyan/5 rounded-full blur-[120px] pointer-events-none"></div>
+                
+                <div class="flex flex-col xl:flex-row gap-12 relative z-10">
+                    <div class="flex-1 space-y-6">
+                        <div class="text-accentBlue font-mono text-xs uppercase tracking-widest">Enterprise Framework</div>
+                        <h3 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+                            Phoenix Suite: Next-Gen Orchestrator
+                        </h3>
+                        <p class="text-slate-400 leading-relaxed">
+                            A highly customized, multi-threaded management ecosystem delivering continuous telemetry, automated schema synchronizations, and zero-touch deployment pipelines for enterprise environments.
+                        </p>
+                        
+                        <ul class="space-y-3 text-sm text-slate-400 border-l border-cloudBorder pl-4 mt-6">
+                            <li><strong class="text-white">UI Architecture:</strong> Developed a futuristic-themed Glass UI dashboard.</li>
+                            <li><strong class="text-white">Execution Engine:</strong> Built on robust WinRM server connection logic and multi-threading execution.</li>
+                            <li><strong class="text-white">Target Systems:</strong> Manages Enterprise SQL syncing and Application node updates.</li>
+                        </ul>
 
-    function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        if (n > slides.length) { slideIndex = 1; }    
-        if (n < 1) { slideIndex = slides.length; }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-        }
-        slides[slideIndex-1].style.display = "block";  
-    }
-</script>
+                        <div class="pt-6">
+                            <a href="https://github.com/Gobinath-CloudArch/MyScripts/raw/main/InstallationMasterToolv8.52_20260830_0203.zip" class="inline-flex items-center gap-3 px-6 py-3.5 bg-accentCyan/10 border border-accentCyan text-accentCyan hover:bg-accentCyan hover:text-cloudBg font-bold rounded-lg transition-all">
+                                <i class="fas fa-download"></i> Download Artifact v8.52
+                            </a>
+                        </div>
+                    </div>
 
+                    <!-- Slideshow Integration (Hidden by default, structure maintained) -->
+                    <div class="flex-1 w-full max-w-2xl mx-auto rounded-xl overflow-hidden border border-cloudBorder bg-black aspect-video relative group">
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-600 font-mono text-sm border-2 border-dashed border-cloudBorder m-4 rounded">
+                            [Telemetry Dashboard Preview] <br> Requires 'monitor.jpg' & 'sync-main.png'
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Competencies -->
+        <section id="competencies" class="px-6 max-w-7xl mx-auto">
+            <div class="mb-12">
+                <div class="text-accentCyan font-mono text-sm uppercase tracking-widest mb-2">Technical Matrix</div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Infrastructure & Cloud Capabilities</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Azure -->
+                <div class="bg-cloudPanel border border-cloudBorder p-6 rounded-xl hover:border-accentBlue transition">
+                    <i class="fab fa-microsoft text-2xl text-accentBlue mb-4"></i>
+                    <h4 class="text-white font-bold mb-2">Azure Architecture</h4>
+                    <p class="text-xs text-slate-400 space-y-1">Resource Groups, VMs, Azure AD, NSG, VPN, VNet Peering, Azure Monitor, Azure Backup.</p>
+                </div>
+                <!-- AWS -->
+                <div class="bg-cloudPanel border border-cloudBorder p-6 rounded-xl hover:border-orange-400 transition">
+                    <i class="fab fa-aws text-2xl text-orange-400 mb-4"></i>
+                    <h4 class="text-white font-bold mb-2">AWS Foundations</h4>
+                    <p class="text-xs text-slate-400 space-y-1">Cloud architecture principles, IAM, EC2 provisioning, and core networking.</p>
+                </div>
+                <!-- Virtualization -->
+                <div class="bg-cloudPanel border border-cloudBorder p-6 rounded-xl hover:border-emerald-400 transition">
+                    <i class="fas fa-server text-2xl text-emerald-400 mb-4"></i>
+                    <h4 class="text-white font-bold mb-2">Virtualization & OS</h4>
+                    <p class="text-xs text-slate-400 space-y-1">VMware ESXi 6.5/7.0, Hyper-V, Windows Server 2012/2016/2019, Linux (Ubuntu/CentOS).</p>
+                </div>
+                <!-- Networks -->
+                <div class="bg-cloudPanel border border-cloudBorder p-6 rounded-xl hover:border-purple-400 transition">
+                    <i class="fas fa-network-wired text-2xl text-purple-400 mb-4"></i>
+                    <h4 class="text-white font-bold mb-2">Enterprise Networking</h4>
+                    <p class="text-xs text-slate-400 space-y-1">Active Directory (GPO/OU), LAN/WAN, DHCP, DNS, IP Routing, IIS & SSL.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Timeline -->
+        <section id="experience" class="px-6 max-w-7xl mx-auto">
+            <div class="mb-12">
+                <div class="text-accentCyan font-mono text-sm uppercase tracking-widest mb-2">Career Trajectory</div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Professional Experience</h2>
+            </div>
+            
+            <div class="relative border-l border-cloudBorder ml-4 space-y-12 pb-4">
+                
+                <!-- Job 1 -->
+                <div class="relative pl-8">
+                    <div class="absolute w-3 h-3 bg-accentCyan rounded-full -left-[6.5px] top-2 shadow-[0_0_10px_#00F0FF]"></div>
+                    <div class="mb-1 text-xs font-mono text-accentCyan">June 2024 – Present</div>
+                    <h3 class="text-xl font-bold text-white">Installation Engineer</h3>
+                    <p class="text-slate-400 text-sm mb-4">Chenosa Technology Solutions Pvt Ltd</p>
+                    <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
+                        <li>Built and verified software packages for deployment across active enterprise environments.</li>
+                        <li>Managed Azure-based cloud infrastructure and resources.</li>
+                        <li>Performed SQL backups and critical synchronization fixes.</li>
+                        <li>Applied manual hotfixes and supported wide-scale application deployment via IIS.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="relative pl-8">
+                    <div class="absolute w-3 h-3 bg-cloudBorder rounded-full -left-[6.5px] top-2"></div>
+                    <div class="mb-1 text-xs font-mono text-slate-500">Dec 2017 – May 2024</div>
+                    <h3 class="text-xl font-bold text-slate-200">Senior Support Administrator</h3>
+                    <p class="text-slate-400 text-sm mb-4">Sungwoo Stamping Pvt Ltd</p>
+                    <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
+                        <li>Administered AD, DNS, DHCP, and file/print servers for robust enterprise infrastructure.</li>
+                        <li>Managed patching, antivirus deployment, and endpoint security for 130+ systems.</li>
+                        <li>Configured routers, switches, and deployed enterprise VoIP infrastructures.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="relative pl-8">
+                    <div class="absolute w-3 h-3 bg-cloudBorder rounded-full -left-[6.5px] top-2"></div>
+                    <div class="mb-1 text-xs font-mono text-slate-500">Nov 2013 – Nov 2017</div>
+                    <h3 class="text-xl font-bold text-slate-300">System Administrator</h3>
+                    <p class="text-slate-400 text-sm mb-4">SSS Solutions Pvt Ltd (Client: Alagendran Automobiles)</p>
+                    <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
+                        <li>Provided comprehensive remote desktop support and led SLA compliance reporting.</li>
+                        <li>Managed AD user setups, proactive system patching, and software rollouts.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section id="certifications" class="px-6 max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="glass-panel p-6 rounded-xl text-center flex flex-col items-center">
+                    <i class="fab fa-microsoft text-2xl text-accentBlue mb-3"></i>
+                    <h4 class="font-bold text-white text-sm mb-1">AZ-305</h4>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest">Architect Expert</p>
+                </div>
+                <div class="glass-panel p-6 rounded-xl text-center flex flex-col items-center">
+                    <i class="fab fa-microsoft text-2xl text-accentBlue mb-3"></i>
+                    <h4 class="font-bold text-white text-sm mb-1">AZ-104</h4>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest">Admin Associate</p>
+                </div>
+                <div class="glass-panel p-6 rounded-xl text-center flex flex-col items-center">
+                    <i class="fab fa-aws text-2xl text-orange-400 mb-3"></i>
+                    <h4 class="font-bold text-white text-sm mb-1">Cloud Quest</h4>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest">Practitioner</p>
+                </div>
+                <div class="glass-panel p-6 rounded-xl text-center flex flex-col items-center">
+                    <i class="fas fa-graduation-cap text-2xl text-purple-400 mb-3"></i>
+                    <h4 class="font-bold text-white text-sm mb-1">BCA Degree</h4>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest">TNOU (2020)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Footer -->
+        <section id="contact" class="px-6 max-w-7xl mx-auto">
+            <div class="glass-panel border-t border-cloudBorder p-12 rounded-2xl text-center space-y-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Initialize Connection</h2>
+                    <p class="text-sm text-slate-400 max-w-xl mx-auto">
+                        Available for architectural discussions, infrastructure audits, and enterprise automation consulting.
+                    </p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="mailto:gobiramakrishnan@yahoo.com" class="text-slate-300 hover:text-white transition font-mono text-sm flex items-center gap-2">
+                        <i class="fas fa-envelope text-accentCyan"></i> gobiramakrishnan@yahoo.com
+                    </a>
+                    <a href="https://www.linkedin.com/in/gobinath-ramakrishnan-391127169/" target="_blank" class="text-slate-300 hover:text-white transition font-mono text-sm flex items-center gap-2">
+                        <i class="fab fa-linkedin text-accentCyan"></i> LinkedIn Profile
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
 </body>
 </html>
