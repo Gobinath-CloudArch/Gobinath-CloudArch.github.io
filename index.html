@@ -42,25 +42,20 @@
         }
 
         /* --- Fullscreen Video Background --- */
-        .video-container {
+        .video-background {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
             z-index: -2;
-            overflow: hidden;
-            background-color: #000;
-        }
-
-        .bg-video {
-            width: 100vw;
-            height: 100vh;
             object-fit: cover;
-            transform: scale(1.05); /* Slight scale to hide edges */
         }
 
-        /* Dark Cinematic Overlay */
+        /* Dark Cinematic Overlay to make text readable */
         .video-overlay {
             position: fixed;
             top: 0;
@@ -72,18 +67,17 @@
                 to bottom, 
                 rgba(10, 10, 15, 0.7) 0%, 
                 rgba(10, 10, 15, 0.85) 50%, 
-                rgba(10, 10, 15, 0.98) 100%
+                rgba(10, 10, 15, 0.95) 100%
             );
-            box-shadow: inset 0 0 150px rgba(255, 0, 60, 0.1);
         }
 
         /* --- UI Elements --- */
         .glass-panel {
-            background: rgba(15, 20, 30, 0.6);
+            background: rgba(15, 20, 30, 0.65);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-top: 1px solid rgba(255, 0, 60, 0.3);
+            border-top: 1px solid rgba(255, 0, 60, 0.4);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
@@ -135,13 +129,11 @@
 <body>
 
     <!-- Cinematic Video Background -->
-    <div class="video-container">
-        <!-- Make sure Homepage.MP4 is uploaded exactly with this name in the repository root -->
-        <video autoplay loop muted playsinline class="bg-video">
-            <source src="Homepage.MP4" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
-    </div>
+    <!-- The "muted" attribute is REQUIRED for autoplay to work in modern browsers -->
+    <video autoplay loop muted playsinline class="video-background">
+        <source src="Homepage.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
     <div class="video-overlay"></div>
 
     <!-- Main Content Container -->
