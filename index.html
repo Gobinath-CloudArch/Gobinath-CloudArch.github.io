@@ -3,245 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gobinath Ramakrishnan | Enterprise Cloud Architect</title>
-    
-    <!-- Tailwind CSS -->
+    <title>Gobinath Ramakrishnan | AI Automation & Enterprise Architecture</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
     <style>
-        body {
+        body, html {
             margin: 0;
-            overflow: hidden;
-            background-color: #050810;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            background-color: #03040b;
             font-family: 'Fira Code', monospace;
-            color: #00ffcc;
+            color: #e2e8f0;
         }
 
-        /* --- High-Speed Racing Grid Animation --- */
-        .grid-container {
-            position: absolute;
+        /* 4K Ready 3D Racing Environment */
+        .scene {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            perspective: 600px;
+            perspective: 800px;
             overflow: hidden;
-            z-index: -2;
-            background: radial-gradient(circle at center, #0a1128 0%, #050810 100%);
+            z-index: 0;
         }
 
-        .moving-grid {
+        .sun {
             position: absolute;
-            bottom: -50%;
-            left: -50%;
-            width: 200%;
-            height: 150%;
-            background-image: 
-                linear-gradient(to right, rgba(0, 255, 204, 0.15) 2px, transparent 2px),
-                linear-gradient(to top, rgba(0, 255, 204, 0.15) 2px, transparent 2px);
-            background-size: 60px 60px;
-            transform: rotateX(75deg);
-            animation: raceGrid 0.8s linear infinite;
-            box-shadow: inset 0 0 100px 100px #050810;
+            bottom: 45%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40vw;
+            max-width: 600px;
+            aspect-ratio: 1 / 1;
+            background: linear-gradient(180deg, #ff007f 0%, #ffaa00 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 100px #ff007f, 0 0 200px #ffaa00;
+            z-index: 1;
         }
 
-        @keyframes raceGrid {
-            0% { transform: rotateX(75deg) translateY(0); }
-            100% { transform: rotateX(75deg) translateY(60px); }
-        }
-
-        /* Horizon Glow */
-        .horizon {
+        .sun::after {
+            content: '';
             position: absolute;
-            top: 40%;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100px;
-            background: linear-gradient(to bottom, rgba(0, 120, 212, 0.5), transparent);
-            filter: blur(20px);
-            z-index: -1;
+            height: 50%;
+            background: repeating-linear-gradient(to bottom, transparent, transparent 10px, #03040b 10px, #03040b 20px);
         }
 
-        /* --- Terminal / Typing Styles --- */
-        .terminal-box {
-            background: rgba(10, 15, 30, 0.85);
+        .grid-plane {
+            position: absolute;
+            width: 300vw;
+            height: 150vh;
+            left: -100vw;
+            top: 50%;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 255, 204, 0.9) 25%, rgba(0, 255, 204, 0.9) 26%, transparent 27%, transparent 74%, rgba(0, 255, 204, 0.9) 75%, rgba(0, 255, 204, 0.9) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 255, 204, 0.9) 25%, rgba(0, 255, 204, 0.9) 26%, transparent 27%, transparent 74%, rgba(0, 255, 204, 0.9) 75%, rgba(0, 255, 204, 0.9) 76%, transparent 77%, transparent);
+            background-size: 80px 80px;
+            transform: rotateX(75deg);
+            animation: race-forward 0.4s linear infinite;
+            z-index: 2;
+            box-shadow: inset 0px 80px 150px #03040b;
+            border-top: 3px solid #00ffcc;
+        }
+
+        @keyframes race-forward {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 80px; }
+        }
+
+        .race-car {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            animation: car-bounce 0.15s infinite alternate, car-steer 4s ease-in-out infinite alternate;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8));
+        }
+
+        @keyframes car-bounce {
+            0% { transform: translateX(-50%) translateY(0px); }
+            100% { transform: translateX(-50%) translateY(4px); }
+        }
+
+        @keyframes car-steer {
+            0% { left: 49%; }
+            100% { left: 51%; }
+        }
+
+        .exhaust {
+            position: absolute;
+            bottom: 10px;
+            width: 15px;
+            height: 15px;
+            background: #ffaa00;
+            border-radius: 50%;
+            filter: blur(5px);
+            animation: exhaust-burn 0.1s infinite alternate;
+        }
+        .exhaust.left { left: 20%; }
+        .exhaust.right { right: 20%; }
+
+        @keyframes exhaust-burn {
+            0% { opacity: 0.8; transform: scale(1); background: #ffaa00; }
+            100% { opacity: 1; transform: scale(1.5); background: #ff007f; box-shadow: 0 0 20px #ff007f; }
+        }
+
+        /* Content UI */
+        .ui-layer {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4vh 2vw 10vh 2vw;
+            opacity: 0;
+            animation: boot-system 2s ease-out 1.5s forwards;
+        }
+
+        @keyframes boot-system {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .terminal-panel {
+            background: rgba(11, 15, 25, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 255, 204, 0.3);
-            box-shadow: 0 0 40px rgba(0, 255, 204, 0.1);
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            height: 18px;
-            background-color: #00ffcc;
-            animation: blink 1s step-end infinite;
-            vertical-align: bottom;
-            margin-left: 2px;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* --- Neon Button Styles --- */
-        .neon-button {
-            position: relative;
-            display: inline-block;
-            padding: 15px 30px;
-            color: #050810;
-            background: #00ffcc;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-            text-decoration: none;
+            border: 1px solid rgba(0, 255, 204, 0.4);
+            box-shadow: 0 0 50px rgba(0, 255, 204, 0.15), inset 0 0 20px rgba(0, 255, 204, 0.05);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 1200px;
             overflow: hidden;
-            transition: 0.2s;
-            border-radius: 5px;
-            box-shadow: 0 0 10px #00ffcc, 0 0 40px #00ffcc, 0 0 80px #00ffcc;
-            opacity: 0;
-            transform: translateY(20px);
-            pointer-events: none;
         }
 
-        .neon-button.visible {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .neon-text {
+            color: #00ffcc;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
         }
 
-        .neon-button:hover {
-            background: #fff;
-            color: #050810;
-            box-shadow: 0 0 10px #fff, 0 0 40px #fff, 0 0 80px #fff;
+        .portfolio-btn {
+            background: linear-gradient(90deg, #00ffcc, #38bdf8);
+            color: #03040b;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4), 0 0 40px rgba(56, 189, 248, 0.2);
+            transition: all 0.3s ease;
         }
-
-        .keyword { color: #38bdf8; font-weight: bold; }
-        .success { color: #27C93F; font-weight: bold; }
-        .warning { color: #FFBD2E; font-weight: bold; }
+        .portfolio-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.6), 0 0 60px rgba(56, 189, 248, 0.4);
+            color: #000;
+        }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen relative">
+<body>
 
-    <!-- Racing Grid Background -->
-    <div class="grid-container">
-        <div class="moving-grid"></div>
+    <!-- 4K Synthwave Racing Background -->
+    <div class="scene">
+        <div class="sun"></div>
+        <div class="grid-plane"></div>
+        <div class="race-car">
+            <div class="exhaust left"></div>
+            <div class="exhaust right"></div>
+            <!-- High-Res Car Silhouette -->
+            <svg width="240" height="120" viewBox="0 0 512 256" fill="#03040b" stroke="#00ffcc" stroke-width="8" xmlns="http://www.w3.org/2000/svg">
+                <!-- Custom Rear Car Shape -->
+                <path d="M50 200 L80 100 L160 50 L352 50 L432 100 L462 200 Z" fill="#0a0f1a" />
+                <path d="M100 120 L170 70 L342 70 L412 120 Z" fill="#00ffcc" opacity="0.2" stroke="none" />
+                <circle cx="100" cy="180" r="25" fill="#ff007f" stroke="none" filter="blur(4px)" />
+                <circle cx="412" cy="180" r="25" fill="#ff007f" stroke="none" filter="blur(4px)" />
+                <rect x="180" y="190" width="152" height="30" fill="#03040b" stroke="#38bdf8" />
+                <text x="256" y="212" font-size="16" fill="#38bdf8" text-anchor="middle" font-family="monospace">GOBI-90</text>
+            </svg>
+        </div>
     </div>
-    <div class="horizon"></div>
 
-    <!-- Central Terminal Window -->
-    <div class="terminal-box w-11/12 max-w-4xl rounded-xl overflow-hidden z-10 flex flex-col h-[75vh] md:h-[65vh]">
-        <!-- Terminal Header -->
-        <div class="bg-slate-900/80 px-4 py-3 flex items-center justify-between border-b border-cyan-500/30">
-            <div class="flex items-center gap-2">
-                <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
-                <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
-                <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
-            </div>
-            <div class="text-[11px] text-cyan-500/70 tracking-widest uppercase">Gobi-Main-Node_v2.0</div>
-            <i class="fa-solid fa-microchip text-cyan-500/70"></i>
-        </div>
-
-        <!-- Typing Content Area -->
-        <div class="p-6 md:p-10 flex-1 overflow-y-auto text-sm md:text-base leading-relaxed text-cyan-300">
-            <div id="typewriter-content" class="whitespace-pre-wrap"></div><span class="cursor" id="cursor"></span>
-        </div>
-
-        <!-- Action Area (Fades in at the end) -->
-        <div class="p-6 border-t border-cyan-500/20 bg-slate-900/50 flex justify-center items-center h-32">
-            <a href="https://gobinath-cloudarch.github.io/portfolio" id="action-btn" class="neon-button">
-                <i class="fa-solid fa-rocket mr-2"></i> For Portfolio Click Here
+    <!-- Interface Layer -->
+    <div class="ui-layer">
+        
+        <!-- Primary Call to Action -->
+        <div class="mb-8 z-20 w-full max-w-1200 flex justify-center mt-4">
+            <a href="https://gobinath-cloudarch.github.io/portfolio" class="portfolio-btn text-xl md:text-2xl font-bold py-4 px-10 rounded-full flex items-center gap-3">
+                <i class="fa-solid fa-bolt"></i> For Portfolio Click Here
             </a>
         </div>
+
+        <div class="terminal-panel flex flex-col mt-4">
+            <div class="bg-slate-900 px-6 py-4 flex items-center justify-between border-b border-cyan-500/30">
+                <div class="flex items-center gap-3">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="ml-4 text-xs tracking-widest text-cyan-400 font-bold uppercase">System_Override_Log.exe</span>
+                </div>
+                <i class="fa-solid fa-microchip text-cyan-400"></i>
+            </div>
+            
+            <div class="p-8 md:p-12">
+                <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">
+                    Gobinath Ramakrishnan
+                </h1>
+                <h2 class="text-xl md:text-2xl neon-text mb-8 border-b border-cyan-500/20 pb-4">
+                    Enterprise AI Automation & Implementation History
+                </h2>
+
+                <div class="space-y-10">
+                    
+                    <!-- Project 1 -->
+                    <div class="relative pl-6 border-l-2 border-cyan-500/50 hover:border-cyan-400 transition-colors">
+                        <div class="absolute -left-[9px] top-1 w-4 h-4 bg-cyan-500 rounded-full shadow-[0_0_10px_#00ffcc]"></div>
+                        <h3 class="text-2xl font-bold text-white mb-2 flex items-center gap-3">
+                            <i class="fa-solid fa-code-merge text-sky-400"></i> Precision XML Deployment & Module Isolation
+                        </h3>
+                        <div class="bg-slate-900/50 border border-slate-700 p-5 rounded-lg text-slate-300 leading-relaxed">
+                            <p class="mb-3"><strong>Implementation Scope:</strong> Directed mission-critical changes to highly sensitive deployment logic for enterprise release pipelines.</p>
+                            <ul class="list-none space-y-2">
+                                <li><span class="text-cyan-400">>></span> <strong>Execution:</strong> Architected specific override paths and dynamic validation to selectively update application configurations.</li>
+                                <li><span class="text-cyan-400">>></span> <strong>Outcome:</strong> Successfully isolated and excluded <em>PhoenixIA</em> from XML updates during both <strong>Step 2</strong> and <strong>Step 4</strong> of the deployment cycle, ensuring absolute stability for independent modules while parallel systems were patched.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="relative pl-6 border-l-2 border-sky-500/50 hover:border-sky-400 transition-colors">
+                        <div class="absolute -left-[9px] top-1 w-4 h-4 bg-sky-500 rounded-full shadow-[0_0_10px_#38bdf8]"></div>
+                        <h3 class="text-2xl font-bold text-white mb-2 flex items-center gap-3">
+                            <i class="fa-solid fa-server text-cyan-400"></i> Remote Server Orchestration & Payload Cleanup
+                        </h3>
+                        <div class="bg-slate-900/50 border border-slate-700 p-5 rounded-lg text-slate-300 leading-relaxed">
+                            <p class="mb-3"><strong>Implementation Scope:</strong> Developed and refined automated PowerShell scripts to manage fleet-wide server operations and maintenance routines for distributed US-based customer environments.</p>
+                            <ul class="list-none space-y-2">
+                                <li><span class="text-sky-400">>></span> <strong>Execution:</strong> Engineered comprehensive deployment scripts designed to push zero-touch updates across active server instances and handle complex IIS binding management.</li>
+                                <li><span class="text-sky-400">>></span> <strong>Outcome:</strong> Implemented strict automation rules for clearing temporary payload files post-deployment, mitigating storage bloat, and seamlessly auditing network shares to maintain strict compliance standards.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="relative pl-6 border-l-2 border-purple-500/50 hover:border-purple-400 transition-colors">
+                        <div class="absolute -left-[9px] top-1 w-4 h-4 bg-purple-500 rounded-full shadow-[0_0_10px_#a855f7]"></div>
+                        <h3 class="text-2xl font-bold text-white mb-2 flex items-center gap-3">
+                            <i class="fa-solid fa-database text-sky-400"></i> Enterprise Database Synchronization Engine
+                        </h3>
+                        <div class="bg-slate-900/50 border border-slate-700 p-5 rounded-lg text-slate-300 leading-relaxed">
+                            <p class="mb-3"><strong>Implementation Scope:</strong> Modernized SQL database maintenance through highly reliable multi-database synchronization mechanisms.</p>
+                            <ul class="list-none space-y-2">
+                                <li><span class="text-purple-400">>></span> <strong>Execution:</strong> Designed robust automation pipelines connecting complex, independent schemas, ensuring exact alignment between distinct Police and Internal Affairs (IA) database architectures.</li>
+                                <li><span class="text-purple-400">>></span> <strong>Outcome:</strong> Minimized manual intervention during data ingestion and differential backups, guaranteeing absolute data integrity across critical public safety infrastructure.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script>
-        // The text to be typed out line by line
-        const linesToType = [
-            "> INITIALIZING SECURE CONNECTION... <span class='success'>[OK]</span>",
-            "> AUTHENTICATING USER: GOBINATH RAMAKRISHNAN...",
-            "> ACCESS GRANTED. WELCOME TO THE MASTER NODE.\n",
-            "<span class='keyword'>[SYSTEM BIO]</span> 12+ Years Enterprise Cloud & Platform Engineer.",
-            "<span class='keyword'>[CREDENTIALS]</span> AZ-305 Architect Expert, AZ-104 Admin, AWS Cloud Quest.\n",
-            "<span class='warning'>LOADING FEATURED ENGINEERING PROJECT: PHOENIX SUITE...</span>",
-            "> Booting Multi-Threaded Execution Engine...",
-            "> Establishing resilient WinRM Server connections...",
-            "> Initiating continuous hardware telemetry via Glass UI...",
-            "> Automating remote server patching protocols...",
-            "> Bypassing restrictions: Executing precision XML overrides (Excluding PhoenixIA)...",
-            "> Synchronizing Police & IA Enterprise SQL Databases...",
-            "> Deployment pipelines fully automated. Zero-touch achieved.\n",
-            "<span class='success'>SYSTEM STATUS: 100% OPERATIONAL & HIGHLY AVAILABLE.</span>",
-            "> Ready to launch full interactive portfolio..."
-        ];
-
-        const container = document.getElementById("typewriter-content");
-        const actionBtn = document.getElementById("action-btn");
-        
-        let currentLine = 0;
-        let currentChar = 0;
-        let typingSpeed = 30; // Milliseconds per character
-        let lineDelay = 500;  // Milliseconds pause between lines
-
-        // Strip HTML tags for character counting but inject them properly
-        function typeWriter() {
-            if (currentLine < linesToType.length) {
-                let lineHtml = linesToType[currentLine];
-                
-                // We inject the whole line at once using a simulated delay to keep HTML tags intact
-                // For a true char-by-char with HTML, it requires complex parsing. 
-                // A great visual hack is to type text normally, but drop HTML lines in instantly with a delay.
-                
-                // Let's implement a char-by-char that handles HTML blocks instantly
-                let isTag = false;
-                let currentText = "";
-                let i = 0;
-
-                function typeChar() {
-                    if (i < lineHtml.length) {
-                        let char = lineHtml.charAt(i);
-                        
-                        if (char === '<') isTag = true;
-                        
-                        currentText += char;
-                        container.innerHTML = currentText;
-                        i++;
-
-                        if (isTag) {
-                            if (char === '>') isTag = false;
-                            typeChar(); // Skip delay for HTML tags
-                        } else {
-                            // Scroll to bottom as it types
-                            container.parentElement.scrollTop = container.parentElement.scrollHeight;
-                            setTimeout(typeChar, typingSpeed);
-                        }
-                    } else {
-                        // Line finished, add a newline and move to next line
-                        container.innerHTML += '\n';
-                        currentLine++;
-                        setTimeout(typeWriter, lineDelay);
-                    }
-                }
-                
-                typeChar();
-                
-            } else {
-                // Typing finished, show the button
-                actionBtn.classList.add("visible");
-            }
-        }
-
-        // Start typing after a short initial boot delay
-        setTimeout(typeWriter, 1000);
-    </script>
 </body>
 </html>
