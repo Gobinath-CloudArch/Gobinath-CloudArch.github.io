@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gobinath Ramakrishnan | Multi-Cloud Architecture Matrix</title>
+    <title>Gobinath Ramakrishnan | Multi-Cloud Architecture</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,10 +40,11 @@
             background-color: #020617;
             color: #e2e8f0;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* --- Advanced Infrastructure Grid Background --- */
-        .infra-grid-wrapper {
+        /* --- Animated Multi-Cloud Background --- */
+        .cloud-universe {
             position: fixed;
             top: 0;
             left: 0;
@@ -51,69 +52,72 @@
             height: 100vh;
             z-index: -2;
             overflow: hidden;
-            background: radial-gradient(circle at 50% 0%, #0f172a 0%, #020617 70%);
+            background: #020617;
         }
 
-        .infra-grid {
+        /* Animated Grid */
+        .cyber-grid {
             position: absolute;
             width: 200vw;
             height: 200vh;
-            top: 0;
+            top: -50vh;
             left: -50vw;
             background-image: 
-                linear-gradient(rgba(0, 240, 255, 0.15) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.15) 1px, transparent 1px);
-            background-size: 50px 50px;
-            transform: perspective(1000px) rotateX(60deg) translateY(-100px) translateZ(-200px);
-            animation: gridMove 10s linear infinite;
+                linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: perspective(1000px) rotateX(60deg);
+            animation: gridPan 15s linear infinite;
         }
 
-        @keyframes gridMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 50px; }
+        @keyframes gridPan {
+            0% { transform: perspective(1000px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(1000px) rotateX(60deg) translateY(60px); }
         }
 
-        .ambient-glow {
-            position: fixed;
-            top: -20vh;
-            left: 20vw;
-            width: 60vw;
-            height: 50vh;
-            background: rgba(0, 120, 212, 0.15);
-            filter: blur(100px);
-            z-index: -1;
+        /* Floating Cloud Nodes */
+        .orb {
+            position: absolute;
             border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: floatOrb 20s infinite ease-in-out alternate;
+        }
+
+        .orb-azure { width: 40vw; height: 40vw; background: #0078D4; top: -10%; left: -10%; }
+        .orb-aws { width: 35vw; height: 35vw; background: #FF9900; bottom: -10%; right: -5%; animation-delay: -5s; }
+        .orb-gcp { width: 30vw; height: 30vw; background: #EA4335; top: 40%; left: 40%; animation-delay: -10s; opacity: 0.2; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10vw, 10vh) scale(1.2); }
         }
 
         /* --- UI Components --- */
         .glass-panel {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 240, 255, 0.15);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 240, 255, 0.05);
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.02);
         }
 
         .tech-hud {
-            background: rgba(2, 6, 23, 0.9);
-            border: 1px solid rgba(0, 240, 255, 0.3);
+            background: rgba(2, 6, 23, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.2);
             position: relative;
-        }
-        .tech-hud::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 10px; height: 10px; border-top: 2px solid #00F0FF; border-left: 2px solid #00F0FF;
-        }
-        .tech-hud::after {
-            content: ''; position: absolute; bottom: 0; right: 0; width: 10px; height: 10px; border-bottom: 2px solid #00F0FF; border-right: 2px solid #00F0FF;
         }
 
         /* --- Active States --- */
-        .provider-btn.active-azure { border-bottom: 2px solid #0078D4; color: #0078D4; background: rgba(0,120,212,0.1); }
-        .provider-btn.active-aws { border-bottom: 2px solid #FF9900; color: #FF9900; background: rgba(255,153,0,0.1); }
-        .provider-btn.active-gcp { border-bottom: 2px solid #EA4335; color: #EA4335; background: rgba(234,67,53,0.1); }
+        .provider-btn.active-azure { border-bottom: 3px solid #0078D4; color: #0078D4; background: rgba(0,120,212,0.15); font-weight: bold;}
+        .provider-btn.active-aws { border-bottom: 3px solid #FF9900; color: #FF9900; background: rgba(255,153,0,0.15); font-weight: bold;}
+        .provider-btn.active-gcp { border-bottom: 3px solid #EA4335; color: #EA4335; background: rgba(234,67,53,0.15); font-weight: bold;}
         
-        .service-item { transition: all 0.2s; cursor: pointer; }
-        .service-item:hover { background: rgba(0, 240, 255, 0.1); padding-left: 1rem; color: #00F0FF; }
-        .service-item.active { background: rgba(0, 240, 255, 0.2); border-left: 3px solid #00F0FF; color: #00F0FF; padding-left: 1rem; font-weight: bold; }
+        .service-item { transition: all 0.2s; cursor: pointer; border-left: 3px solid transparent; }
+        .service-item:hover { background: rgba(255, 255, 255, 0.05); padding-left: 1.5rem; color: #fff; }
+        .service-item.active-azure { background: rgba(0, 120, 212, 0.2); border-left: 3px solid #0078D4; color: #0078D4; padding-left: 1.5rem; font-weight: bold; }
+        .service-item.active-aws { background: rgba(255, 153, 0, 0.2); border-left: 3px solid #FF9900; color: #FF9900; padding-left: 1.5rem; font-weight: bold; }
+        .service-item.active-gcp { background: rgba(234, 67, 53, 0.2); border-left: 3px solid #EA4335; color: #EA4335; padding-left: 1.5rem; font-weight: bold; }
 
         /* Pulse Button */
         .portfolio-btn {
@@ -139,70 +143,76 @@
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #00F0FF; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
     </style>
 </head>
 <body>
 
-    <div class="infra-grid-wrapper"><div class="infra-grid"></div></div>
-    <div class="ambient-glow"></div>
+    <!-- Animated Multi-Cloud Background -->
+    <div class="cloud-universe">
+        <div class="cyber-grid"></div>
+        <div class="orb orb-azure"></div>
+        <div class="orb orb-aws"></div>
+        <div class="orb orb-gcp"></div>
+    </div>
 
-    <main class="relative z-10 min-h-screen flex flex-col items-center pt-12 pb-24 px-4 sm:px-6">
+    <main class="relative z-10 min-h-screen flex flex-col items-center pt-8 pb-16 px-4 sm:px-6">
         
         <!-- Header -->
         <div class="w-full max-w-7xl flex justify-between items-center mb-10">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-neonCyan/10 border border-neonCyan/40 rounded-lg flex items-center justify-center">
-                    <i class="fa-solid fa-server text-neonCyan"></i>
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-slate-900/80 border border-slate-700 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                    <i class="fa-solid fa-network-wired text-white text-xl"></i>
                 </div>
                 <div>
-                    <h1 class="font-mono font-bold text-white tracking-widest uppercase text-sm">Gobi_Master_Node</h1>
-                    <p class="font-mono text-xs text-neonCyan animate-pulse">Global Infrastructure Matrix Online</p>
+                    <h1 class="font-mono font-bold text-white tracking-widest uppercase text-base">MULTI_CLOUD_ORCHESTRATOR</h1>
+                    <p class="font-mono text-xs text-slate-400 animate-pulse mt-1">Infrastructure Matrix Online</p>
                 </div>
             </div>
             
-            <a href="https://gobinath-cloudarch.github.io/portfolio" class="portfolio-btn bg-gradient-to-r from-dataStream to-neonCyan hover:from-sky-500 hover:to-cyan-400 text-slate-950 font-extrabold py-3 px-8 rounded-md text-sm shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center gap-2">
-                <i class="fa-solid fa-bolt text-slate-900"></i> Access Full Portfolio
+            <a href="https://gobinath-cloudarch.github.io/portfolio" class="portfolio-btn bg-white hover:bg-slate-200 text-slate-950 font-bold py-3 px-8 rounded-md text-sm shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-2">
+                <i class="fa-solid fa-folder-open"></i> Access Gobinath Portfolio
             </a>
         </div>
 
         <div class="w-full max-w-7xl text-center mb-10">
             <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight uppercase" style="transform: skewX(-3deg);">
-                Multi-Cloud <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan to-dataStream">Topology Matrix</span>
+                Global Cloud <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan to-dataStream">Topology Matrix</span>
             </h1>
-            <p class="text-slate-400 mt-4 font-mono text-sm max-w-2xl mx-auto">
-                Advanced architectural specifications, provisioning protocols, and underlying hypervisor technologies across Azure, AWS, and GCP environments.
+            <p class="text-slate-400 mt-4 font-mono text-sm max-w-3xl mx-auto leading-relaxed">
+                Advanced architectural specifications, provisioning protocols, and underlying hypervisor technologies deployed across Enterprise Azure, AWS, and GCP environments.
             </p>
         </div>
 
         <!-- The Advanced Cloud Explorer Console -->
-        <div class="w-full max-w-7xl glass-panel rounded-xl flex flex-col h-[800px] overflow-hidden shadow-2xl">
+        <div class="w-full max-w-7xl glass-panel rounded-xl flex flex-col h-[750px] overflow-hidden shadow-2xl">
             
             <!-- Top Bar: Provider Selection -->
-            <div class="flex border-b border-slate-700/50 bg-slate-900/80 font-mono text-sm uppercase tracking-wider">
-                <button onclick="setProvider('azure')" id="btn-azure" class="provider-btn active-azure flex-1 py-4 flex items-center justify-center gap-2 transition-colors">
-                    <i class="fa-brands fa-microsoft"></i> Microsoft Azure
+            <div class="flex border-b border-slate-700/50 bg-slate-950/90 font-mono text-sm uppercase tracking-wider">
+                <button onclick="setProvider('azure')" id="btn-azure" class="provider-btn active-azure flex-1 py-4 flex items-center justify-center gap-3 transition-colors">
+                    <i class="fa-brands fa-microsoft text-lg"></i> Microsoft Azure
                 </button>
-                <button onclick="setProvider('aws')" id="btn-aws" class="provider-btn flex-1 py-4 flex items-center justify-center gap-2 text-slate-400 hover:bg-slate-800 transition-colors border-l border-r border-slate-700/50">
-                    <i class="fa-brands fa-aws"></i> Amazon Web Services
+                <button onclick="setProvider('aws')" id="btn-aws" class="provider-btn flex-1 py-4 flex items-center justify-center gap-3 text-slate-400 hover:bg-slate-800 transition-colors border-l border-r border-slate-700/50">
+                    <i class="fa-brands fa-aws text-lg"></i> Amazon Web Services
                 </button>
-                <button onclick="setProvider('gcp')" id="btn-gcp" class="provider-btn flex-1 py-4 flex items-center justify-center gap-2 text-slate-400 hover:bg-slate-800 transition-colors">
-                    <i class="fa-brands fa-google"></i> Google Cloud
+                <button onclick="setProvider('gcp')" id="btn-gcp" class="provider-btn flex-1 py-4 flex items-center justify-center gap-3 text-slate-400 hover:bg-slate-800 transition-colors">
+                    <i class="fa-brands fa-google text-lg"></i> Google Cloud
                 </button>
             </div>
 
             <div class="flex flex-1 overflow-hidden">
                 <!-- Left Sidebar: Services List -->
-                <div class="w-1/3 border-r border-slate-700/50 bg-slate-900/40 overflow-y-auto" id="service-list">
+                <div class="w-1/3 border-r border-slate-700/50 bg-slate-900/60 overflow-y-auto" id="service-list">
                     <!-- Injected via JS -->
                 </div>
 
                 <!-- Right Main Panel: Technical Specifications HUD -->
                 <div class="w-2/3 p-8 overflow-y-auto tech-hud">
                     <div id="tech-specs-content" class="h-full flex flex-col justify-center items-center text-slate-500 font-mono">
-                        <i class="fa-solid fa-crosshairs text-4xl mb-4 opacity-50 animate-spin" style="animation-duration: 4s;"></i>
-                        <p>AWAITING SERVICE SELECTION...</p>
-                        <p class="text-xs mt-2">Initialize query to fetch architecture metrics.</p>
+                        <i class="fa-solid fa-radar text-5xl mb-6 opacity-40 animate-spin" style="animation-duration: 6s;"></i>
+                        <p class="tracking-widest">AWAITING ARCHITECTURE SELECTION...</p>
+                        <p class="text-xs mt-2 opacity-60">Initialize query to fetch deployment metrics.</p>
                     </div>
                 </div>
             </div>
@@ -217,7 +227,7 @@
                     category: "Compute", name: "Azure Virtual Machines (VM)",
                     definition: "On-demand, scalable computing resources delivering virtualization flexibility without the overhead of physical hardware maintenance.",
                     hypervisor: "Customized Microsoft Hyper-V",
-                    protocol: "RDP (TCP 3389), SSH (TCP 22), WinRM (TCP 5985/5986)",
+                    protocol: "RDP (TCP 3389), SSH (TCP 22), WinRM (TCP 5985)",
                     specs: [
                         "Compute Isolation: Gen2 VMs utilize hardware-based Trusted Execution Environments (TEE).",
                         "Storage IOPS: Premium SSD v2 delivers sub-millisecond latency with up to 80,000 IOPS.",
@@ -226,7 +236,7 @@
                     iac: 'resource "azurerm_linux_virtual_machine" "main" {\n  name = "prod-vm-01"\n  size = "Standard_D4s_v5"\n  os_disk { caching = "ReadWrite" }\n}'
                 },
                 {
-                    category: "Compute", name: "Azure Kubernetes Service (AKS)",
+                    category: "Containers", name: "Azure Kubernetes Service (AKS)",
                     definition: "Managed container orchestration service simplifying Kubernetes deployment, management, and operations with integrated CI/CD and security.",
                     hypervisor: "Containerd runtime on Hyper-V isolated nodes",
                     protocol: "Kubernetes API (TCP 443), Kubelet (TCP 10250)",
@@ -239,13 +249,13 @@
                 },
                 {
                     category: "Networking", name: "Azure Virtual Network (VNet)",
-                    definition: "The fundamental building block for private networks in Azure, enabling secure communication between resources, the internet, and on-premises networks.",
-                    hypervisor: "Software Defined Networking (SDN) via Azure Host Agent",
-                    protocol: "IPv4/IPv6, TCP, UDP, ICMP, IPSec/IKE (for VPN gateways)",
+                    definition: "The fundamental building block for private networks in Azure, enabling secure communication between resources and on-premises environments.",
+                    hypervisor: "Software Defined Networking (SDN)",
+                    protocol: "IPv4/IPv6, IPSec/IKE (VPN)",
                     specs: [
                         "Topology: Non-transitive routing by default; utilizes User-Defined Routes (UDR) for traffic steering.",
-                        "Security: Network Security Groups (NSGs) evaluate flow at the host vSwitch layer (Layer 3/4).",
-                        "Peering: VNet peering routes traffic over the Microsoft backbone without traversing the public internet."
+                        "Security: Network Security Groups (NSGs) evaluate flow at the host vSwitch layer.",
+                        "Peering: VNet peering routes traffic over the Microsoft backbone without internet traversal."
                     ],
                     iac: 'resource "azurerm_virtual_network" "vnet" {\n  name = "core-vnet"\n  address_space = ["10.0.0.0/16"]\n}'
                 },
@@ -259,17 +269,29 @@
                         "Availability: Always On availability groups backing the Business Critical tier (4 replicas).",
                         "Security: Transparent Data Encryption (TDE) and Always Encrypted with secure enclaves."
                     ],
-                    iac: 'resource "azurerm_mssql_database" "sqldb" {\n  name = "app-db"\n  sku_name = "BC_Gen5_2"\n  transparent_data_encryption_enabled = true\n}'
+                    iac: 'resource "azurerm_mssql_database" "sqldb" {\n  name = "app-db"\n  sku_name = "BC_Gen5_2"\n}'
+                },
+                {
+                    category: "Storage", name: "Azure Blob Storage",
+                    definition: "Massively scalable and secure object storage for cloud-native workloads, archives, data lakes, high-performance computing, and machine learning.",
+                    hypervisor: "Azure Storage Stamp Architecture",
+                    protocol: "HTTPS / REST API",
+                    specs: [
+                        "Redundancy: Geo-Zone-Redundant Storage (GZRS) replicates data synchronously across three AZs and asynchronously to a secondary region.",
+                        "Access Tiers: Hot, Cool, Cold, and Archive tiers for cost-optimized lifecycle management.",
+                        "Data Lake: Hierarchical namespace support (ADLS Gen2) for big data analytics operations."
+                    ],
+                    iac: 'resource "azurerm_storage_account" "sa" {\n  name = "prodstorage"\n  account_tier = "Standard"\n  account_replication_type = "GZRS"\n}'
                 },
                 {
                     category: "Security", name: "Microsoft Sentinel",
                     definition: "Cloud-native Security Information and Event Management (SIEM) and Security Orchestration, Automation, and Response (SOAR) solution.",
                     hypervisor: "Log Analytics Workspace Backend",
-                    protocol: "HTTPS API, Syslog, CEF (Common Event Format)",
+                    protocol: "HTTPS API, Syslog, CEF",
                     specs: [
                         "Data Ingestion: Uses Azure Monitor Agent (AMA) and Data Collection Rules (DCR) for telemetry.",
                         "Analytics: Kusto Query Language (KQL) powers real-time threat hunting and alerting.",
-                        "Automation: Integrates with Azure Logic Apps for automated playbook execution upon incident creation."
+                        "Automation: Integrates with Azure Logic Apps for automated playbook execution."
                     ],
                     iac: 'resource "azurerm_sentinel_log_analytics_workspace_onboarding" "siem" {\n  workspace_id = azurerm_log_analytics_workspace.law.id\n}'
                 }
@@ -279,7 +301,7 @@
                     category: "Compute", name: "Amazon EC2 (Elastic Compute Cloud)",
                     definition: "Web service that provides secure, resizable compute capacity in the cloud, designed to make web-scale cloud computing easier.",
                     hypervisor: "AWS Nitro System (KVM-based)",
-                    protocol: "SSH (TCP 22), RDP (TCP 3389), SSM Systems Manager",
+                    protocol: "SSH (TCP 22), RDP (TCP 3389)",
                     specs: [
                         "Architecture: Nitro offloads virtualization functions to dedicated hardware, leaving 100% of host CPU for instances.",
                         "Storage: Elastic Block Store (EBS) attached via NVMe interfaces for high throughput.",
@@ -288,26 +310,26 @@
                     iac: 'resource "aws_instance" "app" {\n  ami = "ami-0c55b159cbfafe1f0"\n  instance_type = "c6g.large"\n  ebs_optimized = true\n}'
                 },
                 {
-                    category: "Compute", name: "Amazon EKS (Elastic Kubernetes Service)",
+                    category: "Containers", name: "Amazon EKS (Elastic Kubernetes Service)",
                     definition: "Managed service that you can use to run Kubernetes on AWS without needing to install, operate, and maintain your own Kubernetes control plane.",
-                    hypervisor: "Firecracker (for Fargate), Nitro (for EC2 nodes)",
+                    hypervisor: "Firecracker (Fargate) / Nitro (EC2)",
                     protocol: "K8s API (TCP 443)",
                     specs: [
                         "Control Plane: High availability across 3 Availability Zones; etcd datastore is automatically backed up.",
                         "Networking: Amazon VPC CNI assigns native VPC IPv4/IPv6 addresses directly to Pods.",
-                        "Security: IAM integration for Kubernetes Service Accounts (IRSA) allowing fine-grained pod permissions."
+                        "Security: IAM integration for Kubernetes Service Accounts (IRSA) allowing fine-grained permissions."
                     ],
                     iac: 'resource "aws_eks_cluster" "eks" {\n  name = "prod-cluster"\n  vpc_config { subnet_ids = aws_subnet.private[*].id }\n}'
                 },
                 {
                     category: "Networking", name: "Amazon VPC (Virtual Private Cloud)",
                     definition: "Logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you define.",
-                    hypervisor: "AWS Hyperplane (SDN component of Nitro)",
-                    protocol: "IPv4/IPv6, VPC Peering, Transit Gateway (BGP)",
+                    hypervisor: "AWS Hyperplane",
+                    protocol: "IPv4/IPv6, BGP (Transit Gateway)",
                     specs: [
                         "Topology: Spans all Availability Zones in a region; subnets map to specific AZs.",
                         "Traffic Control: Security Groups (stateful, interface-level) and Network ACLs (stateless, subnet-level).",
-                        "Connectivity: NAT Gateways for outbound internet, VPC Endpoints (PrivateLink) for private AWS service access."
+                        "Connectivity: NAT Gateways for outbound internet, VPC Endpoints for private AWS service access."
                     ],
                     iac: 'resource "aws_vpc" "main" {\n  cidr_block = "10.1.0.0/16"\n  enable_dns_hostnames = true\n}'
                 },
@@ -315,13 +337,37 @@
                     category: "Database", name: "Amazon Aurora",
                     definition: "MySQL and PostgreSQL-compatible relational database built for the cloud, combining performance and availability of traditional enterprise databases.",
                     hypervisor: "Multi-tenant storage fleet",
-                    protocol: "MySQL (TCP 3306) / PostgreSQL (TCP 5432)",
+                    protocol: "MySQL (3306) / PostgreSQL (5432)",
                     specs: [
                         "Storage: Purpose-built, log-structured distributed storage system replicating 6 ways across 3 AZs.",
                         "Resilience: Peer-to-peer gossip replication; self-healing storage blocks.",
                         "Performance: Push-down processing offloads SQL logic to the storage tier, minimizing network IO."
                     ],
-                    iac: 'resource "aws_rds_cluster" "aurora" {\n  engine = "aurora-postgresql"\n  master_username = "admin"\n  storage_encrypted = true\n}'
+                    iac: 'resource "aws_rds_cluster" "aurora" {\n  engine = "aurora-postgresql"\n  master_username = "admin"\n}'
+                },
+                {
+                    category: "Storage", name: "Amazon S3 (Simple Storage Service)",
+                    definition: "Object storage service offering industry-leading scalability, data availability, security, and performance.",
+                    hypervisor: "AWS Distributed Storage Architecture",
+                    protocol: "HTTPS / REST API",
+                    specs: [
+                        "Durability: Designed for 99.999999999% (11 9's) of durability across multiple Availability Zones.",
+                        "Classes: S3 Intelligent-Tiering automatically moves data between frequent and infrequent access tiers.",
+                        "Security: S3 Block Public Access, Object Lock, and default server-side encryption (SSE-S3)."
+                    ],
+                    iac: 'resource "aws_s3_bucket" "data" {\n  bucket = "enterprise-data-lake"\n  force_destroy = false\n}'
+                },
+                {
+                    category: "Security", name: "AWS IAM",
+                    definition: "Identity and Access Management securely manages access to AWS services and resources.",
+                    hypervisor: "Global Identity Plane",
+                    protocol: "HTTPS API / SAML 2.0 / OIDC",
+                    specs: [
+                        "Authorization: Attribute-Based Access Control (ABAC) using tags for dynamic policy enforcement.",
+                        "Temporary Access: AWS STS provides temporary credentials for federation and cross-account access.",
+                        "Validation: IAM Access Analyzer identifies resources shared with an external entity."
+                    ],
+                    iac: 'resource "aws_iam_role" "ec2_role" {\n  name = "AppRole"\n  assume_role_policy = data.aws_iam_policy_document.assume.json\n}'
                 }
             ],
             gcp: [
@@ -329,18 +375,18 @@
                     category: "Compute", name: "Google Compute Engine (GCE)",
                     definition: "Customizable virtual machines running in Google's innovative data centers and worldwide fiber network.",
                     hypervisor: "Google's Custom KVM",
-                    protocol: "SSH (TCP 22), IAP (Identity-Aware Proxy)",
+                    protocol: "SSH (TCP 22), IAP",
                     specs: [
                         "Architecture: Live Migration technology moves running VMs to new hosts without noticeable downtime.",
                         "Networking: Andromeda SDN powers transparent network virtualization and load balancing.",
-                        "Customization: Custom Machine Types allow exact CPU to RAM ratios to eliminate over-provisioning waste."
+                        "Customization: Custom Machine Types allow exact CPU to RAM ratios to eliminate over-provisioning."
                     ],
-                    iac: 'resource "google_compute_instance" "default" {\n  name = "prod-instance"\n  machine_type = "e2-standard-4"\n  zone = "us-central1-a"\n}'
+                    iac: 'resource "google_compute_instance" "default" {\n  name = "prod-instance"\n  machine_type = "e2-standard-4"\n}'
                 },
                 {
-                    category: "Compute", name: "Google Kubernetes Engine (GKE)",
+                    category: "Containers", name: "Google Kubernetes Engine (GKE)",
                     definition: "Secured and managed Kubernetes service with four-way auto-scaling and multi-cluster support.",
-                    hypervisor: "gVisor (for Autopilot), KVM (for Standard)",
+                    hypervisor: "gVisor (Autopilot) / KVM (Standard)",
                     protocol: "K8s API (TCP 443)",
                     specs: [
                         "Operations: Autopilot mode manages the entire cluster infrastructure, billing per pod resource request.",
@@ -351,12 +397,12 @@
                 },
                 {
                     category: "Networking", name: "Google Cloud VPC",
-                    definition: "Global, scalable, and flexible virtual network providing networking functionality to Compute Engine VM instances, GKE, and serverless.",
+                    definition: "Global, scalable, and flexible virtual network providing networking functionality to Compute Engine, GKE, and serverless.",
                     hypervisor: "Andromeda SDN",
-                    protocol: "BGP (Cloud Router), IPv4/IPv6",
+                    protocol: "BGP (Cloud Router)",
                     specs: [
                         "Topology: VPCs are global resources; subnets are regional, allowing single-VPC multi-region architectures.",
-                        "Routing: Cloud Router enables dynamic routing (BGP) between VPC and on-prem networks via Cloud Interconnect.",
+                        "Routing: Cloud Router enables dynamic routing (BGP) between VPC and on-prem networks.",
                         "Security: Hierarchical Firewall Policies applied at the organization or folder level."
                     ],
                     iac: 'resource "google_compute_network" "vpc_network" {\n  name = "global-vpc"\n  auto_create_subnetworks = false\n}'
@@ -364,14 +410,26 @@
                 {
                     category: "Database", name: "Cloud Spanner",
                     definition: "Fully managed, mission-critical, relational database service that offers transactional consistency at global scale.",
-                    hypervisor: "Colossus Network / TrueTime API",
+                    hypervisor: "Colossus / TrueTime API",
                     protocol: "gRPC / REST API",
                     specs: [
-                        "Architecture: Uses GPS and atomic clocks (TrueTime API) to ensure external consistency globally.",
+                        "Architecture: Uses GPS and atomic clocks (TrueTime) to ensure external consistency globally.",
                         "Scaling: Shards data horizontally across zones and regions automatically with Paxos consensus.",
-                        "Use Case: Financial ledgers, global inventory, and supply chain applications requiring ACID transactions."
+                        "Use Case: Financial ledgers and global inventory requiring strict ACID transactions."
                     ],
-                    iac: 'resource "google_spanner_instance" "main" {\n  config = "regional-us-central1"\n  display_name = "Global Ledger"\n  num_nodes = 3\n}'
+                    iac: 'resource "google_spanner_instance" "main" {\n  config = "regional-us-central1"\n  num_nodes = 3\n}'
+                },
+                {
+                    category: "Data Analytics", name: "Google BigQuery",
+                    definition: "Serverless, highly scalable, and cost-effective multi-cloud data warehouse designed for business agility.",
+                    hypervisor: "Borg / Dremel Execution Engine",
+                    protocol: "REST API / SQL",
+                    specs: [
+                        "Execution: Dremel engine dynamically allocates CPU slots across thousands of servers to scan terabytes in seconds.",
+                        "Storage: Capacitor columnar storage format handles transparent encryption and compression.",
+                        "Machine Learning: BigQuery ML allows data scientists to build and operationalize ML models using standard SQL."
+                    ],
+                    iac: 'resource "google_bigquery_dataset" "dataset" {\n  dataset_id = "enterprise_analytics"\n  location   = "US"\n}'
                 }
             ]
         };
@@ -383,21 +441,21 @@
             
             // Reset active tabs
             document.querySelectorAll('.provider-btn').forEach(btn => {
-                btn.className = "provider-btn flex-1 py-4 flex items-center justify-center gap-2 text-slate-400 hover:bg-slate-800 transition-colors";
+                btn.className = "provider-btn flex-1 py-4 flex items-center justify-center gap-3 text-slate-400 hover:bg-slate-800 transition-colors";
                 if(btn.id !== 'btn-azure') btn.classList.add("border-l", "border-r", "border-slate-700/50");
             });
 
             // Set Active State
             const activeBtn = document.getElementById(`btn-${provider}`);
-            if(provider === 'azure') activeBtn.className = "provider-btn active-azure flex-1 py-4 flex items-center justify-center gap-2 transition-colors";
-            if(provider === 'aws') activeBtn.className = "provider-btn active-aws flex-1 py-4 flex items-center justify-center gap-2 transition-colors border-l border-r border-slate-700/50";
-            if(provider === 'gcp') activeBtn.className = "provider-btn active-gcp flex-1 py-4 flex items-center justify-center gap-2 transition-colors border-l border-slate-700/50";
+            if(provider === 'azure') activeBtn.className = "provider-btn active-azure flex-1 py-4 flex items-center justify-center gap-3 transition-colors";
+            if(provider === 'aws') activeBtn.className = "provider-btn active-aws flex-1 py-4 flex items-center justify-center gap-3 transition-colors border-l border-r border-slate-700/50";
+            if(provider === 'gcp') activeBtn.className = "provider-btn active-gcp flex-1 py-4 flex items-center justify-center gap-3 transition-colors border-l border-slate-700/50";
 
             renderServiceList();
             document.getElementById('tech-specs-content').innerHTML = `
-                <i class="fa-solid fa-crosshairs text-4xl mb-4 opacity-50 animate-spin" style="animation-duration: 4s;"></i>
-                <p>AWAITING SERVICE SELECTION...</p>
-                <p class="text-xs mt-2">Initialize query to fetch architecture metrics.</p>
+                <i class="fa-solid fa-radar text-5xl mb-6 opacity-40 animate-spin" style="animation-duration: 6s;"></i>
+                <p class="tracking-widest">AWAITING ARCHITECTURE SELECTION...</p>
+                <p class="text-xs mt-2 opacity-60">Initialize query to fetch deployment metrics.</p>
             `;
         }
 
@@ -406,25 +464,28 @@
             listContainer.innerHTML = '';
             
             let colorClass = 'text-azureBlue';
-            if(currentProvider === 'aws') colorClass = 'text-awsOrange';
-            if(currentProvider === 'gcp') colorClass = 'text-gcpRed';
+            let activeClass = 'active-azure';
+            if(currentProvider === 'aws') { colorClass = 'text-awsOrange'; activeClass = 'active-aws'; }
+            if(currentProvider === 'gcp') { colorClass = 'text-gcpRed'; activeClass = 'active-gcp'; }
 
             cloudMatrix[currentProvider].forEach((service, index) => {
                 const item = document.createElement('div');
-                item.className = `service-item p-4 border-b border-slate-700/50 font-mono text-sm text-slate-300`;
+                item.className = `service-item p-5 border-b border-slate-700/50 font-mono text-sm text-slate-300`;
                 item.innerHTML = `
-                    <div class="text-[10px] ${colorClass} uppercase tracking-widest mb-1">${service.category}</div>
-                    <div class="font-bold">${service.name}</div>
+                    <div class="text-[10px] ${colorClass} font-bold uppercase tracking-widest mb-1">${service.category}</div>
+                    <div class="font-bold text-base text-white group-hover:text-white">${service.name}</div>
                 `;
-                item.onclick = () => renderSpecs(index, item);
+                item.onclick = () => renderSpecs(index, item, activeClass);
                 listContainer.appendChild(item);
             });
         }
 
-        function renderSpecs(index, element) {
+        function renderSpecs(index, element, activeClass) {
             // Update active state in list
-            document.querySelectorAll('.service-item').forEach(el => el.classList.remove('active'));
-            element.classList.add('active');
+            document.querySelectorAll('.service-item').forEach(el => {
+                el.classList.remove('active-azure', 'active-aws', 'active-gcp');
+            });
+            element.classList.add(activeClass);
 
             const service = cloudMatrix[currentProvider][index];
             const content = document.getElementById('tech-specs-content');
@@ -433,39 +494,40 @@
             if(currentProvider === 'aws') themeColor = '#FF9900';
             if(currentProvider === 'gcp') themeColor = '#EA4335';
 
-            let specsHtml = service.specs.map(s => `<li class="mb-2"><span style="color:${themeColor}">></span> ${s}</li>`).join('');
+            let specsHtml = service.specs.map(s => `<li class="mb-3 flex items-start gap-3"><span style="color:${themeColor}; margin-top:2px;">>></span> <span class="flex-1">${s}</span></li>`).join('');
 
             content.innerHTML = `
-                <div class="w-full h-full flex flex-col items-start justify-start text-left animate-pulse" style="animation-iteration-count: 1; animation-duration: 0.3s;">
-                    <div class="inline-block px-3 py-1 bg-slate-900 border border-slate-700 rounded text-xs font-mono mb-4 uppercase tracking-widest" style="color:${themeColor}">${service.category} SPECIFICATION</div>
-                    <h2 class="text-3xl font-bold text-white mb-2 font-mono">${service.name}</h2>
-                    <p class="text-slate-400 mb-8 font-sans text-sm leading-relaxed">${service.definition}</p>
+                <div class="w-full h-full flex flex-col items-start justify-start text-left animate-pulse" style="animation-iteration-count: 1; animation-duration: 0.4s;">
+                    <div class="inline-block px-3 py-1 bg-slate-900 border border-slate-700 rounded text-xs font-mono mb-4 uppercase tracking-widest" style="color:${themeColor}">${service.category} ARCHITECTURE</div>
                     
-                    <div class="grid grid-cols-2 gap-4 w-full mb-8">
-                        <div class="bg-slate-900/50 border border-slate-700 p-4 rounded">
-                            <div class="text-[10px] text-slate-500 font-mono uppercase mb-1">Underlying Hypervisor / Tech</div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">${service.name}</h2>
+                    <p class="text-slate-300 mb-8 font-sans text-base leading-relaxed border-l-2 pl-4" style="border-color:${themeColor}">${service.definition}</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mb-10">
+                        <div class="bg-slate-900/80 border border-slate-700 p-5 rounded-lg">
+                            <div class="text-[10px] text-slate-500 font-mono uppercase tracking-widest mb-2 flex items-center gap-2"><i class="fa-solid fa-microchip"></i> Underlying Hypervisor</div>
                             <div class="text-white font-mono text-sm">${service.hypervisor}</div>
                         </div>
-                        <div class="bg-slate-900/50 border border-slate-700 p-4 rounded">
-                            <div class="text-[10px] text-slate-500 font-mono uppercase mb-1">Primary Protocols</div>
+                        <div class="bg-slate-900/80 border border-slate-700 p-5 rounded-lg">
+                            <div class="text-[10px] text-slate-500 font-mono uppercase tracking-widest mb-2 flex items-center gap-2"><i class="fa-solid fa-network-wired"></i> Access Protocols</div>
                             <div class="text-white font-mono text-sm">${service.protocol}</div>
                         </div>
                     </div>
 
-                    <h3 class="text-lg font-bold text-white mb-3 font-mono border-b border-slate-700/50 pb-2 w-full">Architectural Deep Dive</h3>
-                    <ul class="text-sm font-sans text-slate-300 w-full mb-8">
+                    <h3 class="text-xl font-bold text-white mb-4 font-mono border-b border-slate-700/50 pb-2 w-full flex items-center gap-2"><i class="fa-solid fa-magnifying-glass-chart"></i> Technical Specifications</h3>
+                    <ul class="text-sm font-sans text-slate-300 w-full mb-10">
                         ${specsHtml}
                     </ul>
 
-                    <h3 class="text-lg font-bold text-white mb-3 font-mono border-b border-slate-700/50 pb-2 w-full">Infrastructure as Code (Terraform)</h3>
-                    <div class="w-full bg-baseDark border border-slate-700 rounded p-4 overflow-x-auto">
-                        <pre class="text-neonCyan font-mono text-xs"><code>${service.iac}</code></pre>
+                    <h3 class="text-xl font-bold text-white mb-4 font-mono border-b border-slate-700/50 pb-2 w-full flex items-center gap-2"><i class="fa-solid fa-code"></i> Terraform Deployment Artifact</h3>
+                    <div class="w-full bg-baseDark border border-slate-700 rounded-lg p-5 overflow-x-auto shadow-inner">
+                        <pre class="font-mono text-sm" style="color:#a5b4fc"><code>${service.iac}</code></pre>
                     </div>
                 </div>
             `;
         }
 
-        // Initialize
+        // Initialize default view
         setProvider('azure');
     </script>
 </body>
